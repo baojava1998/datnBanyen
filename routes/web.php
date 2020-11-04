@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
         Route::post('them', 'TheLoaiController@postThem');
 
-        Route::get('xoa/{id}', 'TheLoaiController@getXoa');
+        Route::get('xoa', 'TheLoaiController@getXoa')->name('xoa.theloai');
     });
 
     Route::group(['prefix' => 'loaitin'], function () {

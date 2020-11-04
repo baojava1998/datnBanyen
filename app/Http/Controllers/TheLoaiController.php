@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TheLoai;
+use Illuminate\Support\Facades\View;
 
 class TheLoaiController extends Controller
 {
@@ -62,10 +63,19 @@ class TheLoaiController extends Controller
 
         return redirect('admin/theloai/sua/'.$id)->with('thongbao','Sửa thành công');
     }
-    public function getXoa($id)
+    public function getXoa(Request $request)
     {
-        $theloai = TheLoai::find($id);
+        $theloai = TheLoai::find($request->id);
         $theloai->delete();
-        return redirect('admin/theloai/danhsach')->with('thongbao','Bạn đã xóa thành công');
+        $theloai1 = TheLoai::all();
+        $data = '';
+        $data .= View::make('admin.component.danhsach-theloai', ['theloai' => $theloai1]);
+        return response()->json([
+            'error' => false,
+            'data' => $data,
+            'message' => 'success'
+        ], 200);
+//        return view('admin/theloai/danhsach',['theloai'=>$theloai1]);
+//        return redirect('admin/theloai/danhsach')->with('thongbao','Bạn đã xóa thành công');
     }
 }
