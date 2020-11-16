@@ -69,7 +69,9 @@ class TheLoaiController extends Controller
         $theloai->delete();
         $theloai1 = TheLoai::all();
         $data = '';
-        $data .= View::make('admin.component.danhsach-theloai', ['theloai' => $theloai1]);
+//        foreach ($theloai1 as $tl) {
+            $data .= View::make('admin.component.danhsach-theloai', ['theloai' => $theloai1]);
+//        }
         return response()->json([
             'error' => false,
             'data' => $data,

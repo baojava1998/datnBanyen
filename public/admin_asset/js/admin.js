@@ -9,9 +9,10 @@ $(document).ready(function() {
             data: {
                 id: id,
             },
-        }).done(function(response) {
-            RenderTL(response.data);
-            alertify.success('Xóa thành công');
+            success:function(res){
+                RenderTL(res.data);
+                alertify.success('Xóa thành công');
+            }
         });
     }
 
@@ -19,6 +20,6 @@ $(document).ready(function() {
         $(document).on('click', '.tl_delete', DeleteTL);
     })
     function RenderTL(response) {
-        $("#page-wrapper").html(response);
+        $("#dataTables-example").html(response);
     }
 });

@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LoaiTin;
-use App\TheLoai;
+use App\Models\SanPham;
 
 class AjaxController extends Controller
 {
     //
-    public function getLoaiTin($idTheLoai)
+    public function getSanPham($idTheLoai)
     {
-        $loaitin = LoaiTin::where('idTheLoai',$idTheLoai)->get();
-        foreach($loaitin as $lt)
+        $sanpham = SanPham::where('idLoaiSanPham',$idTheLoai)->get();
+        foreach($sanpham as $sp)
         {
-            echo "<option value='".$lt->id."'>".$lt->Ten."</option>"; 
+            echo "<option value='".$sp->id."'>".$sp->Ten."</option>";
         }
     }
 }

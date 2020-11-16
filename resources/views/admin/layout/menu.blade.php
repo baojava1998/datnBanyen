@@ -28,25 +28,25 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="admin/loaitin/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Loại tin<span class="fa arrow"></span></a>
+                <a href="admin/sanpham/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/loaitin/danhsach">Danh sách loại tin</a>
+                        <a href="admin/sanpham/danhsach">Danh sách sản phẩm</a>
                     </li>
                     <li>
-                        <a href="admin/loaitin/them">thêm loại tin</a>
+                        <a href="admin/sanpham/them">thêm sản phẩm</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="admin/tintuc/danhsach"><i class="fa fa-cube fa-fw"></i> Tin Tức<span class="fa arrow"></span></a>
+                <a href="admin/ctsanpham/danhsach"><i class="fa fa-cube fa-fw"></i> Chi tiết sản phẩm<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="admin/tintuc/danhsach">Danh sách tin tức</a>
+                        <a href="admin/ctsanpham/danhsach">Danh sách chi tiết sản phẩm</a>
                     </li>
                     <li>
-                        <a href="admin/tintuc/them">Thêm tin tức</a>
+                        <a href="admin/ctsanpham/them">Thêm chi tiết sản phẩm</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

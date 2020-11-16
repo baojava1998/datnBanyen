@@ -35,34 +35,34 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('xoa', 'TheLoaiController@getXoa')->name('xoa.theloai');
     });
 
-    Route::group(['prefix' => 'loaitin'], function () {
+    Route::group(['prefix' => 'sanpham'], function () {
         //admin/theloai/them
-        Route::get('danhsach', 'LoaiTinController@getDanhSach');
+        Route::get('danhsach', 'SanPhamController@getDanhSach');
 
-        Route::get('sua/{id}', 'LoaiTinController@getSua');
+        Route::get('sua/{id}', 'SanPhamController@getSua');
 
-        Route::post('sua/{id}', 'LoaiTinController@postSua');
+        Route::post('sua/{id}', 'SanPhamController@postSua');
 
-        Route::get('them', 'LoaiTinController@getThem');
+        Route::get('them', 'SanPhamController@getThem');
 
-        Route::post('them', 'LoaiTinController@postThem');
+        Route::post('them', 'SanPhamController@postThem');
 
-        Route::get('xoa/{id}', 'LoaiTinController@getXoa');
+        Route::get('xoa/{id}', 'SanPhamController@getXoa');
     });
 
-    Route::group(['prefix' => 'tintuc'], function () {
+    Route::group(['prefix' => 'ctsanpham'], function () {
         //admin/theloai/them
-        Route::get('danhsach', 'TinTucController@getDanhSach');
+        Route::get('danhsach', 'ChiTietSanPhamController@getDanhSach');
 
-        Route::get('sua/{id}', 'TinTucController@getSua');
+        Route::get('sua/{id}', 'ChiTietSanPhamController@getSua');
 
-        Route::post('sua/{id}', 'TinTucController@postSua');
+        Route::post('sua/{id}', 'ChiTietSanPhamController@postSua');
 
-        Route::get('them', 'TinTucController@getThem');
+        Route::get('them', 'ChiTietSanPhamController@getThem');
 
-        Route::post('them', 'TinTucController@postThem');
+        Route::post('them', 'ChiTietSanPhamController@postThem');
 
-        Route::get('xoa/{id}', 'TinTucController@getXoa');
+        Route::get('xoa/{id}', 'ChiTietSanPhamController@getXoa');
     });
 
     Route::group(['prefix' => 'comment'], function () {
@@ -99,7 +99,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     });
 
     Route::group(['prefix' => 'ajax'], function () {
-        Route::get('loaitin/{idTheLoai}', 'AjaxController@getLoaiTin');
+        Route::get('ctsanpham/{idTheLoai}', 'AjaxController@getSanPham');
     });
 });
+Route::get('image/upload','ChiTietSanPhamController@fileCreate');
+Route::post('image/upload/store','ChiTietSanPhamController@fileStore');
+Route::post('image/delete','ChiTietSanPhamController@fileDestroy');
 //Route::get('/','Controller@index');
