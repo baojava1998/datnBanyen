@@ -22,8 +22,10 @@
                         <th>Tiêu đề</th>
                         <th>Tóm tắt</th>
                         <th>Thể loai</th>
-                        <th>Loại tin</th>
+                        <th>Sản phẩm</th>
                         <th>Giá</th>
+                        <th>Khuyến Mãi</th>
+                        <th>Tên</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -35,12 +37,16 @@
                     <tr class="odd gradeX" align="center">
                         <td>{{$tt->id}}</td>
                         <td>{{$tt->TieuDe}} <br>
-                            <img width="100px" src="upload/tintuc/{{$tt->Hinh}}" alt="">
+                            @foreach($tt->sanpham->hinh as $hinhsp)
+                            <img width="100px" src="admin_asset\upload\images\san-pham\{{$hinhsp->Hinh}}" alt="">
+                                @endforeach
                         </td>
                         <td>{!!$tt->TomTat!!}</td>
                         <td>{{$tt->sanpham->theloai->Ten}}</td>
                         <td>{{$tt->sanpham->Ten}}</td>
-                        <td>{{$tt->Gia}}</td>
+                        <td>{{number_format($tt->Gia)}}</td>
+                        <td>{{$tt->KhuyenMai}}%</td>
+                        <td>{{$tt->sanpham->Ten}}</td>
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/ctsanpham/xoa/{{$tt->id}}">
                                 Xóa</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a

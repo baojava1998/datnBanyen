@@ -63,6 +63,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::post('them', 'ChiTietSanPhamController@postThem');
 
         Route::get('xoa/{id}', 'ChiTietSanPhamController@getXoa');
+
+        Route::get('image/upload','ChiTietSanPhamController@fileCreate');
+
+        Route::post('image/upload/store','ChiTietSanPhamController@fileStore');
+
+        Route::post('image/delete','ChiTietSanPhamController@fileDestroy');
     });
 
     Route::group(['prefix' => 'comment'], function () {
@@ -102,7 +108,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('ctsanpham/{idTheLoai}', 'AjaxController@getSanPham');
     });
 });
-Route::get('image/upload','ChiTietSanPhamController@fileCreate');
-Route::post('image/upload/store','ChiTietSanPhamController@fileStore');
-Route::post('image/delete','ChiTietSanPhamController@fileDestroy');
+
 //Route::get('/','Controller@index');

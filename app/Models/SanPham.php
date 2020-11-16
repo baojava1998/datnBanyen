@@ -13,9 +13,12 @@ class SanPham extends Model
     {
         return $this->belongsTo('App\Models\TheLoai','idLoaiSanPham','id');
     }
-
-    public function tintuc()
+    public function ctsanpham()
     {
-        return $this->hasMany('App\Models\TinTuc','idLoaiSanPham','id');
+        return $this->belongsTo('App\Models\ChiTietSanPham','idSanPham','id');
+    }
+    public function hinh()
+    {
+        return $this->hasMany('App\Models\HinhSanPham','idSanPham','id');
     }
 }

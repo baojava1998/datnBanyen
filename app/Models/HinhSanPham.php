@@ -11,4 +11,8 @@ class HinhSanPham extends Model
     protected $fillable = [
         'Hinh','idSanPham',
     ];
+    public function sanpham()
+    {
+        return $this->belongsTo('App\Models\SanPham','idSanPham','id');
+    }
 }
