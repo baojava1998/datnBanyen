@@ -14,7 +14,7 @@
             <div class="col-lg-3">
                 <div class="product-large set-bg" data-setbg="img/products/women-large.jpg">
                     <h2>Nước yến</h2>
-                    <a href="/TheLoai?id=2&link=true">Xem thêm</a>
+                    <a href="/TheLoai?id=2&product=true">Xem thêm</a>
                 </div>
             </div>
             <div class="col-lg-8 offset-lg-1">
@@ -151,7 +151,7 @@
             <div class="col-lg-3 offset-lg-1">
                 <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
                     <h2>Yến xào</h2>
-                    <a href="/TheLoai?id=1&link=true">Xem Thêm</a>
+                    <a href="/TheLoai?id=1&product=true">Xem Thêm</a>
                 </div>
             </div>
         </div>

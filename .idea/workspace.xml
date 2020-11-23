@@ -2,37 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="135fe29e-6293-44a0-9cc1-0d0007b5c11d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/admin_asset/js/pages.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layout/component/content-product.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layout/component/menu-product.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layout/component/show-option-product.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/shop.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChiTietSanPhamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChiTietSanPhamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SanPhamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SanPhamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SlideController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SlideController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/admin_asset/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/slicknav.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/slicknav.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/banner-1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/banner-1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/banner-2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/banner-2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/products/man-large.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/products/man-large.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/products/women-large.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/products/women-large.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/template/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/template/shop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ctsanpham/danhsach.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ctsanpham/danhsach.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ctsanpham/sua.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ctsanpham/sua.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ctsanpham/them.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/ctsanpham/them.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/slide/danhsach.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/slide/danhsach.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/slide/sua.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/slide/sua.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layout/slide.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout/slide.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +206,7 @@
       <workItem from="1606095479955" duration="474000" />
       <workItem from="1606097089451" duration="2054000" />
       <workItem from="1606100840249" duration="1439000" />
-      <workItem from="1606113298584" duration="2475000" />
+      <workItem from="1606113298584" duration="3346000" />
     </task>
     <task id="LOCAL-00001" summary="master">
       <created>1604028920387</created>
@@ -285,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605524049802</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="develop">
+      <created>1606120837685</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606120837685</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,18 +280,18 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1605862816773" />
-    <state x="387" y="0" key="CommitChangelistDialog2" timestamp="1605524049362">
+    <state x="387" y="0" key="CommitChangelistDialog2" timestamp="1606120837147">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="387" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1605524049362" />
+    <state x="387" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1606120837147" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1606102671968">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1606102671968" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1605524052117">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1606120840997">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1605524052117" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1606120840997" />
     <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604029047994">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
