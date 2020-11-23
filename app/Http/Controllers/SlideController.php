@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\LoaiTin;
-use App\Slide;
-use App\TheLoai;
-use App\TinTuc;
-use App\Comment;
+use App\Models\LoaiTin;
+use App\Models\Slide;
+use App\Models\TheLoai;
+use App\Models\TinTuc;
+use App\Models\Comment;
 use Illuminate\Support\Str;
 
 class SlideController extends Controller
@@ -25,14 +25,14 @@ class SlideController extends Controller
 
     public function postThem(Request $request)
     {
-       
 
-        
+
+
         $this->validate($request,
         [
             'Ten'=>'required',
-            'NoiDung'=>'required', 
-            'Hinh'=>'image|mimes:jpeg,png,jpg,gif,svg|max:10000',           
+            'NoiDung'=>'required',
+            'Hinh'=>'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
         ],
         [
             'Ten.required'=>'Bạn chưa nhập tên',//required là có hay k
@@ -55,14 +55,14 @@ class SlideController extends Controller
             //  {
             //     return redirect('admin/tintuc/them')->with('thongbao','chỉ được chọn file có đuôi : png, jpg, jpeg');
             //  }
-            
+
              $name = $file->getClientOriginalName();
              $hinh = Str::random(4)."_".$name;
-             while(file_exists("upload/slide/".$hinh))
+             while(file_exists("admin_asset/upload/images/slide/".$hinh))
              {
                 $hinh = Str::random(4)."_".$name;
              }
-            $file->move("upload/slide",$hinh);
+            $file->move("admin_asset/upload/images/slide/",$hinh);
             $slide->Hinh = $hinh;
         }
         else
@@ -82,8 +82,8 @@ class SlideController extends Controller
         $this->validate($request,
         [
             'Ten'=>'required',
-            'NoiDung'=>'required', 
-            'Hinh'=>'image|mimes:jpeg,png,jpg,gif,svg|max:10000',           
+            'NoiDung'=>'required',
+            'Hinh'=>'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
         ],
         [
             'Ten.required'=>'Bạn chưa nhập tên',//required là có hay k
@@ -106,15 +106,15 @@ class SlideController extends Controller
             //  {
             //     return redirect('admin/tintuc/them')->with('thongbao','chỉ được chọn file có đuôi : png, jpg, jpeg');
             //  }
-            
+
              $name = $file->getClientOriginalName();
              $hinh = Str::random(4)."_".$name;
-             while(file_exists("upload/slide/".$hinh))
+             while(file_exists("admin_asset/upload/images/slide/".$hinh))
              {
                 $hinh = Str::random(4)."_".$name;
              }
-            unlink("upload/slide/".$slide->Hinh);
-            $file->move("upload/slide",$hinh);
+            unlink("admin_asset/upload/images/slide/".$slide->Hinh);
+            $file->move("admin_asset/upload/images/slide/",$hinh);
             $slide->Hinh = $hinh;
         }
         $slide->save();
@@ -123,6 +123,10 @@ class SlideController extends Controller
     public function getXoa($id)
     {
         $slide = Slide::find($id);
+        $path=public_path().'/admin_asset/upload/images/slide/'.$slide->Hinh;
+        if (file_exists($path)) {
+            unlink($path);
+        }
         $slide->delete();
         return redirect('admin/slide/danhsach')->with('thongbao','Bạn đã xóa thành công');
     }

@@ -81,7 +81,7 @@
                         <button type="reset" class="btn btn-default" style="position: absolute;margin-top: 225px;">Làm mới</button>
                     </form>
                     <div class="form-group">
-                        <label>Hình ảnh</label>
+                        <label>Hình ảnh (<2mb)</label>
                         {{--                            <form method="post" action="{{url('image/upload/store')}}" enctype="multipart/form-data"--}}
                         {{--                                  class="dropzone" id="dropzone">--}}
                         {{--                                @csrf--}}

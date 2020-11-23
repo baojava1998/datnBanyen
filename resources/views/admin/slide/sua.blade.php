@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label>Hình ảnh</label> <br>
-                        <img width="400px" src="upload/slide/{{$slide->Hinh}}" alt="">
+                        <img width="400px" src="admin_asset\upload\images\slide\{{$slide->Hinh}}" alt="">
                         <input type="file" name="Hinh" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-default">Sửa</button>

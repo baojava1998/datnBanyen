@@ -5,7 +5,7 @@
                 <div class="single-banner">
                     <img src="img/banner-1.jpg" alt="">
                     <div class="inner-text">
-                        <h4>Men’s</h4>
+                        <h4>Yến xào</h4>
                     </div>
                 </div>
             </div>
@@ -13,7 +13,7 @@
                 <div class="single-banner">
                     <img src="img/banner-2.jpg" alt="">
                     <div class="inner-text">
-                        <h4>Women’s</h4>
+                        <h4>Nước Yến</h4>
                     </div>
                 </div>
             </div>

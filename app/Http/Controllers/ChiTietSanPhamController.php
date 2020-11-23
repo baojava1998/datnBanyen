@@ -92,11 +92,18 @@ class ChiTietSanPhamController extends Controller
 
         return redirect('admin/ctsanpham/sua/'.$id)->with('thongbao','Sửa thành công');
     }
-    public function getXoa($id)
+    public function getXoa(Request $request,$id)
     {
         $ctsanpham = ChiTietSanPham::find($id);
         $ctsanpham->delete();
-        $hinh = HinhSanPham::where('idSanPham',$id)->with()->delete();
+        $hinh = HinhSanPham::where('idSanPham',$ctsanpham->idSanPham)->get();
+        foreach($hinh as $dele){
+            $path=public_path().'/admin_asset/upload/images/san-pham/'.$dele->Hinh;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+            $dele->delete();
+        }
         return redirect('admin/ctsanpham/danhsach')->with('thongbao','Bạn đã xóa thành công');
     }
     public function fileCreate()

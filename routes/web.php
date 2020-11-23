@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('layout.index');
-});
+//pages
+Route::get('/', 'HomeController@index');
+Route::get('/get-quick-view', 'HomeController@getQuickView')->name('get.QuickView');
+Route::get('/shop', 'HomeController@shop');
+Route::get('/TheLoai', 'HomeController@ajaxTheLoai')->name('ajax.TheLoai');
+Route::get('/seachPrice', 'HomeController@seachPrice')->name('ajax.seachPrice');
+Route::get('/load-more', 'HomeController@loadMore')->name('ajax.loadMore');
+//admin
 Route::get('admin/dangnhap', 'UserController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangnhapAdmin');
 Route::get('admin/logout', 'UserController@getDangXuatAdmin');

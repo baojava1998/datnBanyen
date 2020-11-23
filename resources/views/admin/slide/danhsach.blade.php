@@ -21,7 +21,7 @@
                         <tr align="center">
                             <th>ID</th>
                             <th>Tên</th>
-                            <th>Nội dungt</th>
+                            <th>Nội dung</th>
                             <th>Hình</th>
                             <th>Link</th>
                             <th>Delete</th>
@@ -35,9 +35,9 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{ $sd->id }}</td>
                                 <td>{{ $sd->Ten }}</td>
-                                <td>{{ $sd->NoiDung }}</td>
+                                <td>{!!$sd->NoiDung!!}</td>
                                 <td>
-                                    <img width="400px" src="upload/slide/{{ $sd->Hinh }}" alt="">
+                                    <img width="400px" src="admin_asset\upload\images\slide\{{ $sd->Hinh }}" alt="">
                                 </td>
                                 <td>{{ $sd->link }}</td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a

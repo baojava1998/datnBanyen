@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietSanPham;
+use App\Models\HinhSanPham;
 use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\TheLoai;
@@ -72,6 +74,18 @@ class SanPhamController extends Controller
     public function getXoa($id)
     {
         $sanpham = SanPham::find($id);
+        $ctsanpham = ChiTietSanPham::where('idSanPham',$sanpham->id)->first();
+        if (isset($ctsanpham)){
+            $ctsanpham->delete();
+            $hinh = HinhSanPham::where('idSanPham',$ctsanpham->idSanPham)->get();
+            foreach($hinh as $dele){
+                $path=public_path().'/admin_asset/upload/images/san-pham/'.$dele->Hinh;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                $dele->delete();
+            }
+        }
         $sanpham->delete();
         return redirect('admin/sanpham/danhsach')->with('thongbao','Bạn đã xóa thành công');
     }

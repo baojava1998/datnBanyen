@@ -21,11 +21,12 @@
                         <th>ID</th>
                         <th>Tiêu đề</th>
                         <th>Tóm tắt</th>
-                        <th>Thể loai</th>
+                        <th>Nội dung</th>
+                        <th>Thể loại</th>
                         <th>Sản phẩm</th>
                         <th>Giá</th>
                         <th>Khuyến Mãi</th>
-                        <th>Tên</th>
+{{--                        <th>Tên</th>--}}
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
@@ -38,15 +39,18 @@
                         <td>{{$tt->id}}</td>
                         <td>{{$tt->TieuDe}} <br>
                             @foreach($tt->sanpham->hinh as $hinhsp)
-                            <img width="100px" src="admin_asset\upload\images\san-pham\{{$hinhsp->Hinh}}" alt="">
-                                @endforeach
+                            <img height="100px"  src="admin_asset\upload\images\san-pham\{{$hinhsp->Hinh}}" alt="">
+                            @endforeach
                         </td>
-                        <td>{!!$tt->TomTat!!}</td>
+{{--                        <td style="display:flex">--}}
+                        <td style="min-width: 250px;">{!!$tt->TomTat!!}</td>
+                        <td style="max-height: 380px; display: block;overflow: hidden;overflow: scroll;">{!!$tt->NoiDung!!}</td>
+{{--                        </td>--}}
                         <td>{{$tt->sanpham->theloai->Ten}}</td>
                         <td>{{$tt->sanpham->Ten}}</td>
                         <td>{{number_format($tt->Gia)}}</td>
-                        <td>{{$tt->KhuyenMai}}%</td>
-                        <td>{{$tt->sanpham->Ten}}</td>
+                        <td>{{isset($tt->KhuyenMai) ? $tt->KhuyenMai : 0 }}%</td>
+{{--                        <td>{{$tt->sanpham->Ten}}</td>--}}
                         <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/ctsanpham/xoa/{{$tt->id}}">
                                 Xóa</a></td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i> <a
