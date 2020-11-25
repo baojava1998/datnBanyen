@@ -117,7 +117,7 @@
                     <span>Loại sản phẩm</span>
                     <ul class="depart-hover">
                         @foreach($theloai as $tl)
-                            <li><a href="#">{{$tl->Ten}}</a></li>
+                            <li><a href="/TheLoai?id={{$tl->id}}&product=true">{{$tl->Ten}}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -125,8 +125,8 @@
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li class="{{(Request::segment(1) == ''?'active': '')}}"><a href="./">Trang chủ</a></li>
-                    <li class="{{(Request::segment(1) == 'shop'?'active': (isset($_GET['product'])?'active':''))}}"><a href="/shop">Sản phẩm</a></li>
-                    <li><a href="#">Giảm giá</a></li>
+                    <li class="{{(Request::segment(1) == 'shop'?'active': (isset($_GET['product'])?'active':(Request::segment(1) == 'shop-detail')?'active':''))}}"><a href="/shop">Sản phẩm</a></li>
+                    <li class="{{isset($_GET['sale'])?'active':''}}"><a href="/TheLoai?sale=true">Giảm giá</a></li>
                     <li><a href="./contact.html">Liên Hệ</a></li>
                     <li><a href="#">Phản hồi</a></li>
                 </ul>

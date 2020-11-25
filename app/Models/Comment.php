@@ -9,13 +9,13 @@ class Comment extends Model
     //
     protected $table = "Comment";
 
-    public function tintuc()
+    public function ctsanpham()
     {
-        return $this->belongsTo('App\TinTuc','idTinTuc','id');
+        return $this->belongsTo('App\Models\TinTuc','idChiTiet_Sp','id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User','idUser','id');
+        return $this->belongsTo('App\Models\User','idUser','id');
     }
 }

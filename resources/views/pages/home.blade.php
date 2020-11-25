@@ -37,7 +37,7 @@
                             <ul>
                                 <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
                                 <li class="quick-view"><a href="javascript:" class="toggle-quick-view" data-url="{{route('get.QuickView')}}" data-id="{{$spn->id}}" data-toggle="modal" data-target="#quickview">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                <li class="w-icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                             </ul>
                         </div>
                         <div class="pi-text">

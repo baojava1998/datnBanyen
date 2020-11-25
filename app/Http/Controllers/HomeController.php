@@ -7,6 +7,7 @@ use App\Models\SanPham;
 use App\Models\Slide;
 use App\Models\TheLoai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
@@ -61,16 +62,28 @@ class HomeController extends Controller
         $loadmore = 'all';
         return view('pages.shop',compact('sanpham','loadmore'));
     }
-    function ajaxTheLoai(Request $request)
+    function ajaxTheLoai(Request $request) //ajax and link
     {
+        $local = ($request->local == 'sale') ? 'sale' : 'product';
         $output = '';
-        $chitietsanpham = ChiTietSanPham::with('sanpham')->whereHas('sanpham', function($q) use ($request){
-            $q->where('idLoaiSanPham', $request->id);
+        $chitietsanpham = ChiTietSanPham::where(function ($query) use ($request){
+            if ($request->sale) {
+                $query->where('KhuyenMai', '!=', null);
+            }else{
+                $query->whereHas('sanpham', function($q) use ($request){
+                    $q->where('idLoaiSanPham', $request->id);
+                    if ($request->local == 'sale'){
+                        $q->where('KhuyenMai', '!=', null);
+                    }
+                });
+            }
         })->take(6)->get();
         $loadmore = $request->id;
-        $output .= View::make('layout.component.content-product', ['sanpham' => $chitietsanpham, 'loadmore'=> $loadmore]);
+        $output .= View::make('layout.component.content-product', ['sanpham' => $chitietsanpham, 'loadmore'=> $loadmore, 'local'=> $local]);
         if ($request->product){
             return view('pages.shop',['sanpham' => $chitietsanpham, 'loadmore'=> $loadmore]);
+        }elseif ($request->sale){
+            return view('pages.shop',['sanpham' => $chitietsanpham, 'loadmore'=> 'sale']);
         }else {
             return response()->json([
                 'error' => false,
@@ -83,8 +96,20 @@ class HomeController extends Controller
         $output = '';
         $chitietsanpham = ChiTietSanPham::with('sanpham')->whereHas('sanpham', function($q) use ($request){
             $q->whereBetween('Gia', [$request->min, $request->max]);
+            if ($request->load == 1 || $request->load ==2){
+                $q->where('idLoaiSanPham', $request->load);
+            }
+            elseif ($request->load =='sale'){
+                $q->where('KhuyenMai','!=',null);
+            }
         })->take(6)->get();
         $loadmore = 'seach';
+        if ($request->load == 1 || $request->load ==2){
+            $loadmore = 'seach-'.$request->load;
+        }
+        if ($request->load == 'sale'){
+            $loadmore = 'sale';
+        }
         $output .= View::make('layout.component.content-product', ['sanpham' => $chitietsanpham, 'loadmore'=> $loadmore]);
         return response()->json([
             'error'=>false,
@@ -100,8 +125,20 @@ class HomeController extends Controller
             elseif ($request->load == 'seach'){
                 $q->whereBetween('Gia', [$request->min, $request->max]);
             }
+            elseif ($request->load == 'seach-1'){
+                $q->whereBetween('Gia', [$request->min, $request->max])->where('idLoaiSanPham', 1);
+            }
+            elseif ($request->load == 'seach-2'){
+                $q->whereBetween('Gia', [$request->min, $request->max])->where('idLoaiSanPham', 2);
+            }
+            elseif ($request->load == 'sale'){
+                $q->where('KhuyenMai','!=',null)->whereBetween('Gia', [$request->min, $request->max]);
+            }
             else{
                 $q->where('idLoaiSanPham',$request->load);
+                if ($request->local = 'sale'){
+                    $q->where('KhuyenMai','!=',null);
+                }
             }
         })->skip($request->length)->take(6)->get();
         $loadmore = $request->load;
@@ -112,5 +149,13 @@ class HomeController extends Controller
             'error'=>false,
             'data'=>$output,
         ]);
+    }
+    function shopDetail($id)
+    {
+        $chitietsanpham = ChiTietSanPham::find($id);
+        $splienquan = ChiTietSanPham::whereHas('sanpham', function($query) use ($chitietsanpham) {
+            $query->where('idLoaiSanPham',$chitietsanpham->sanpham->idLoaiSanPham);
+        })->take(4)->get();
+        return view('pages.product-detail',compact('chitietsanpham','splienquan'));
     }
 }

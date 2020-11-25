@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Route::get('/get-quick-view', 'HomeController@getQuickView')->name('get.QuickView');
 Route::get('/shop', 'HomeController@shop');
+Route::get('/shop-detail/{id}', 'HomeController@shopDetail');
 Route::get('/TheLoai', 'HomeController@ajaxTheLoai')->name('ajax.TheLoai');
 Route::get('/seachPrice', 'HomeController@seachPrice')->name('ajax.seachPrice');
 Route::get('/load-more', 'HomeController@loadMore')->name('ajax.loadMore');

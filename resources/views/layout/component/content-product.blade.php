@@ -12,8 +12,7 @@
                     </div>
                     <ul>
                         <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                        <li class="quick-view"><a href="#">+ Chi Tiết</a></li>
-                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                        <li class="quick-view"><a href="/shop-detail/{{$sp->id}}">+ Chi Tiết</a></li>
                     </ul>
                 </div>
                 <div class="pi-text">
@@ -33,7 +32,7 @@
     @endforeach
 </div>
 <div class="loading-more">
-    <a href="#" id="load-more" data-load="{{$loadmore}}" data-url="{{route('ajax.loadMore')}}">
+    <a href="#" id="load-more" data-local="{{isset($local) ? $local :'product'}}" data-load="{{$loadmore}}" data-url="{{route('ajax.loadMore')}}">
         More Product
     </a>
 </div>

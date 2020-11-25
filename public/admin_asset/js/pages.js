@@ -18,14 +18,17 @@ $(document).ready(function() {
     $(document).on('click','.theloai',function (){
         let id = $(this).data('id');
         let url = $(this).data('url');
+        let local = $(this).data('local');
         _this = $(this);
         $.ajax({
             url: url,
             data:{
                 id: id,
+                local: local
             },
             success: function (data) {
                 $('.product-list').html(data.data);
+                $('.filter-btn').data('load',id);
                 countproduct();
             }
         });
@@ -35,12 +38,14 @@ $(document).ready(function() {
         e.preventDefault();
         let minamount = $('#minamount').val();
         let maxamount = $('#maxamount').val();
+        let load = $(this).data('load');
         url = $(this).data('url');
         $.ajax({
             url: url,
             data:{
                 min: minamount,
-                max: maxamount
+                max: maxamount,
+                load: load
             },
             success: function (data) {
                 $('.product-list').html(data.data);
@@ -50,6 +55,7 @@ $(document).ready(function() {
     })
     $(document).on('click', '#load-more', function(e){
         e.preventDefault();
+        let local = $(this).data('local');
         let minamount = $('#minamount').val();
         let maxamount = $('#maxamount').val();
         $(this).text('Loading More').append('<i class="icon_loading"></i>');
@@ -62,7 +68,8 @@ $(document).ready(function() {
                 load: load,
                 length: length,
                 min: minamount,
-                max: maxamount
+                max: maxamount,
+                local: local
             },
             success: function (data) {
                 $('.loading-more').remove();
