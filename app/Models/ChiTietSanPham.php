@@ -18,4 +18,8 @@ class ChiTietSanPham extends Model
     {
         return $this->hasMany('App\Models\Comment','idChiTiet_Sp','id');
     }
+    public function giohang()
+    {
+        return $this->hasMany('App\Models\GioHang','idSanPham','id');
+    }
 }

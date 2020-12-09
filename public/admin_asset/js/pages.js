@@ -1,6 +1,6 @@
 $(document).ready(function() {
     countproduct();
-    $(document).on('click','.toggle-quick-view',function (){
+    $(document).on('click','.toggle-quick-view',function (e){
         let id = $(this).data('id');
         let url = $(this).data('url');
         _this = $(this);

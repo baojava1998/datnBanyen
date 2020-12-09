@@ -11,7 +11,7 @@
                         <i class="icon_heart_alt"></i>
                     </div>
                     <ul>
-                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                        <li class="w-icon active"><a href="javascript:" class="add_to_cart" data-hinh="{{$sp->sanpham->hinh[0]->Hinh}}" data-url="themgio/{{ $sp->id }}"><i class="icon_bag_alt"></i></a></li>
                         <li class="quick-view"><a href="/shop-detail/{{$sp->id}}">+ Chi Tiết</a></li>
                     </ul>
                 </div>

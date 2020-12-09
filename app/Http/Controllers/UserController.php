@@ -13,7 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use phpDocumentor\Reflection\Types\This;
 
-class UserController extends Controller
+class UserController extends HomeController
 {
     //
     public function getDanhSach()
@@ -134,5 +134,34 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect('admin/dangnhap');
+    }
+    public function getDangnhap()
+    {
+        return view('pages.login.login');
+    }
+    public function postDangnhap(Request $request)
+    {
+        $this->validate($request,
+            [
+
+                'email'=>'required',
+                'password'=>'required|min:3|max:32',
+            ],
+            [
+                'email.required'=>'Bạn chưa nhập đúng định dạng email',
+                'password.required'=>'bạn chưa nhập password',
+                'password.min'=>'Password phải có it nhất 3 ký tự',
+                'password.max'=>'Password không được quá 32 ký tự',
+            ]);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            return back();
+        } else {
+            return back()->with('errors-login', 'Wrong account or password');
+        }
+    }
+    public function getDangXuat()
+    {
+        Auth::logout();
+        return back();
     }
 }

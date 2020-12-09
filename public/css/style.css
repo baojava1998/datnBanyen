@@ -3761,8 +3761,10 @@ ol {
 -----------------------*/
 
 .register-login-section {
-	padding-top: 72px;
-	padding-bottom: 80px;
+	padding-top: 10%;
+	padding-bottom: 10%;
+    padding-right: 10%;
+    padding-left: 10%;
 }
 
 .register-form h2,

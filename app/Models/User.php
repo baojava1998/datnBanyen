@@ -39,6 +39,10 @@ class User extends Authenticatable
 
     public function comment()
     {
-        return $this->hasMany('App\Comment','idUser','id');
+        return $this->hasMany('App\Models\Comment','idUser','id');
+    }
+    public function giohang()
+    {
+        return $this->hasMany('App\Models\GioHang','idUsers','id');
     }
 }

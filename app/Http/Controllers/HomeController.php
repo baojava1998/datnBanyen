@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChiTietSanPham;
+use App\Models\GioHang;
 use App\Models\SanPham;
 use App\Models\Slide;
 use App\Models\TheLoai;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+    protected $user;
     function __construct()
     {
         $theloai = TheLoai::all();
@@ -20,6 +22,12 @@ class HomeController extends Controller
         view()->share('theloai',$theloai);
         view()->share('slide',$slide);
         view()->share('sanphamall',$sanphamall);
+        $this->middleware(function ($request, $next) {
+            $this->user= Auth::user();
+            $giohang = GioHang::where('idUser',Auth::id())->get();
+            view()->share('giohang',$giohang);
+            return $next($request);
+        });
         // if(Auth::check())
         // {
         // view()->share('nguoidung',Auth::user());

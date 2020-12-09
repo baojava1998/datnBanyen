@@ -128,7 +128,7 @@
                             </div>
                             <ul>
                                 <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                <li class="quick-view"><a href="javascript:" class="toggle-quick-view" data-url="{{route('get.QuickView')}}" data-id="{{$spx->id}}" data-toggle="modal" data-target="#quickview">+ Quick View</a></li>
                                 <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                             </ul>
                         </div>

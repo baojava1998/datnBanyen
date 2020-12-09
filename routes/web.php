@@ -19,6 +19,12 @@ Route::get('/shop-detail/{id}', 'HomeController@shopDetail');
 Route::get('/TheLoai', 'HomeController@ajaxTheLoai')->name('ajax.TheLoai');
 Route::get('/seachPrice', 'HomeController@seachPrice')->name('ajax.seachPrice');
 Route::get('/load-more', 'HomeController@loadMore')->name('ajax.loadMore');
+//login
+Route::get('/dangnhap', 'UserController@getDangnhap');
+Route::post('/dangnhap', 'UserController@postDangnhap')->name('login.page');
+Route::get('/logout', 'UserController@getDangXuat')->name('logout.page');
+//buy
+Route::get('themgio/{id}', 'BuyController@ThemGio');
 //admin
 Route::get('admin/dangnhap', 'UserController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangnhapAdmin');
