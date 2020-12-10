@@ -2,19 +2,19 @@ $(document).ready(function() {
     function addToCart(){
         let urlGio = $(this).data('url');
         let hinh = $(this).data('hinh');
+        let qty = $(this).data('qty');
         $.ajax({
             type: 'GET',
             url: urlGio,
             dataType: 'json',
             data:{
                 hinh: hinh,
+                qty:qty
             },
             success: function (data) {
-
+                $('.cart-hover').html(data.data);
+                $('.soluong').html(data.soluong);
                 alertify.success('Đã thêm mới sản phẩm');
-                // if(data.code===200){
-                //     alert('ok');
-                // }
             },
             error: function () {
 

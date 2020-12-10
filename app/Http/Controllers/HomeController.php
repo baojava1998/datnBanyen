@@ -25,7 +25,15 @@ class HomeController extends Controller
         $this->middleware(function ($request, $next) {
             $this->user= Auth::user();
             $giohang = GioHang::where('idUser',Auth::id())->get();
+            $tongtien = 0;
+            $soluong = 0;
+            foreach ($giohang as $gio){
+                $tongtien += ($gio->ctsanpham->Gia*(100-$gio->ctsanpham->KhuyenMai)/100) * $gio->SoLuong;
+                $soluong += $gio->SoLuong;
+            }
             view()->share('giohang',$giohang);
+            view()->share('tongtien',$tongtien);
+            view()->share('soluong',$soluong);
             return $next($request);
         });
         // if(Auth::check())

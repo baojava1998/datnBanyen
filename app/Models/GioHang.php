@@ -13,9 +13,10 @@ class GioHang extends Model
         'SanPham', 'Gia', 'Hinh','idSanPham','SoLuong','idUser','XacNhan'
     ];
 
+
     public function ctsanpham()
     {
-        return $this->belongsTo('App\Models\SanPham','idSanPham','id');
+        return $this->belongsTo('App\Models\ChiTietSanPham','idSanPham','id');
     }
 
     public function user()

@@ -64,7 +64,15 @@
                             </a>
                         </li>
                         <div id="card-view">
-                            @include('layout.component.card-view')
+                            <li class="cart-icon">
+                                <a href="#">
+                                    <i class="icon_bag_alt"></i>
+                                    <span class="soluong">{{$soluong}}</span>
+                                </a>
+                                <div class="cart-hover">
+                                    @include('layout.component.card-view')
+                                </div>
+                            </li>
                         </div>
                     </ul>
                 </div>
