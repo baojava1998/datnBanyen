@@ -111,6 +111,7 @@
         </div>
     </div>
 </footer>
+<input type="hidden" name="checkAuth" value="{{Auth::check() ? "true" : "false" }}">
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
@@ -141,3 +142,13 @@
 </body>
 
 </html>
+
+<script>
+    {{--$(document).on('click', '.add_to_cart', function (){--}}
+    {{--    if ('{{!Auth::check()}}'){--}}
+    {{--        alert('Vui lòng đăng nhập để mua hàng');--}}
+    {{--    }else {--}}
+    {{--        return false;--}}
+    {{--    }--}}
+    {{--});--}}
+</script>

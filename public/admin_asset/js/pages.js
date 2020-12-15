@@ -10,7 +10,7 @@ $(document).ready(function() {
                 id: id,
             },
             success: function (data) {
-                $('.modal-content').html(data.data);
+                $('#quickview').find('.modal-content').html(data.data);
             }
         });
     })
