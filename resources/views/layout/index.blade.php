@@ -45,7 +45,7 @@
             <div class="col-lg-3">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        <a href="#"><img src="img/logo.png" height="50px" alt=""></a>
                     </div>
                     <ul>
                         <li>Address: 60-49 Road 11378 New York</li>
@@ -143,12 +143,3 @@
 
 </html>
 
-<script>
-    {{--$(document).on('click', '.add_to_cart', function (){--}}
-    {{--    if ('{{!Auth::check()}}'){--}}
-    {{--        alert('Vui lòng đăng nhập để mua hàng');--}}
-    {{--    }else {--}}
-    {{--        return false;--}}
-    {{--    }--}}
-    {{--});--}}
-</script>
