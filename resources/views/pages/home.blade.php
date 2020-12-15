@@ -35,7 +35,7 @@
                                 <i class="icon_heart_alt"></i>
                             </div>
                             <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                <li class="w-icon active"><a href="javascript:" class="add_to_cart" data-hinh="{{$spn->sanpham->hinh[0]->Hinh}}" data-qty="1" data-url="themgio/{{ $spn->id }}"><i class="icon_bag_alt"></i></a></li>
                                 <li class="quick-view"><a href="javascript:" class="toggle-quick-view" data-url="{{route('get.QuickView')}}" data-id="{{$spn->id}}" data-toggle="modal" data-target="#quickview">+ Quick View</a></li>
                                 <li class="w-icon"><a href="#"><i class="icon_heart_alt"></i></a></li>
                             </ul>
@@ -127,7 +127,7 @@
                                 <i class="icon_heart_alt"></i>
                             </div>
                             <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                <li class="w-icon active"><a href="javascript:" class="add_to_cart" data-hinh="{{$spx->sanpham->hinh[0]->Hinh}}" data-qty="1" data-url="themgio/{{ $spx->id }}"><i class="icon_bag_alt"></i></a></li>
                                 <li class="quick-view"><a href="javascript:" class="toggle-quick-view" data-url="{{route('get.QuickView')}}" data-id="{{$spx->id}}" data-toggle="modal" data-target="#quickview">+ Quick View</a></li>
                                 <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                             </ul>
