@@ -23,6 +23,8 @@ Route::get('/load-more', 'HomeController@loadMore')->name('ajax.loadMore');
 Route::get('/dangnhap', 'UserController@getDangnhap');
 Route::post('/dangnhap', 'UserController@postDangnhap')->name('login.page');
 Route::get('/logout', 'UserController@getDangXuat')->name('logout.page');
+//register
+Route::post('dangky','UserController@postDangky')->name('register.page');
 //buy
 Route::get('themgio/{id}', 'BuyController@ThemGio');
 //admin

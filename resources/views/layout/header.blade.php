@@ -116,28 +116,35 @@
                                     <h2>Login</h2>
                                     <form action="{{route('login.page')}}" method="post">
                                         @csrf
+                                        @if (count($errors)>0)
+                                            <div class="alert alert-danger">
+                                                @foreach ($errors->all() as $err)
+                                                    {{$err}} <br>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                         @if(session('errors-login'))
                                             <div class="alert alert-danger">
                                                 {{session('errors-login')}}
                                             </div>
                                         @endif
                                         <div class="group-input">
-                                            <label for="username">Username or email address *</label>
+                                            <label for="username">Email address *</label>
                                             <input type="email" id="username" name="email">
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style="color: red">{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
+{{--                                            @if ($errors->has('email'))--}}
+{{--                                                <div class="alert alert-danger">--}}
+{{--                                                    <strong style="color: red">{{ $errors->first('email') }}</strong>--}}
+{{--                                                </div>--}}
+{{--                                            @endif--}}
                                         </div>
                                         <div class="group-input">
                                             <label for="pass">Password *</label>
                                             <input type="password" id="pass" name="password">
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong style="color: red">{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
+{{--                                            @if ($errors->has('password'))--}}
+{{--                                                <span class="alert alert-danger">--}}
+{{--                                                    <strong style="color: red">{{ $errors->first('password') }}</strong>--}}
+{{--                                                </span>--}}
+{{--                                            @endif--}}
                                         </div>
                                         <div class="group-input gi-check">
                                             <div class="gi-more">
@@ -172,18 +179,30 @@
                             <div class="col-lg-12">
                                 <div class="register-form">
                                     <h2>Register</h2>
-                                    <form action="#">
+                                    <form action="{{route('register.page')}}" method="post">
+                                        @csrf
+                                        @if (count($errors)>0)
+                                            <div class="alert alert-danger">
+                                                @foreach ($errors->all() as $err)
+                                                    {{$err}} <br>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                         <div class="group-input">
-                                            <label for="username">Username or email address *</label>
-                                            <input type="text" id="username">
+                                            <label for="username">Name *</label>
+                                            <input type="text" id="username" name="name">
+                                        </div>
+                                        <div class="group-input">
+                                            <label for="username">Email address *</label>
+                                            <input type="email" id="username" name="emailr">
                                         </div>
                                         <div class="group-input">
                                             <label for="pass">Password *</label>
-                                            <input type="text" id="pass">
+                                            <input type="password" id="pass" name="passwordr">
                                         </div>
                                         <div class="group-input">
                                             <label for="con-pass">Confirm Password *</label>
-                                            <input type="text" id="con-pass">
+                                            <input type="password" id="con-pass" name="passwordAgainr">
                                         </div>
                                         <button type="submit" class="site-btn register-btn">REGISTER</button>
                                     </form>

@@ -156,12 +156,46 @@ class UserController extends HomeController
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             return back();
         } else {
-            return back()->with('errors-login', 'Wrong account or password');
+            return back()->with('errors-login', 'Sai tài khoản hoặc mật khẩu');
         }
     }
     public function getDangXuat()
     {
         Auth::logout();
         return back();
+    }
+    public function postDangky(Request $request)
+    {
+        $this->validate($request,
+            [
+                'name'=>'required|min:3',
+                'emailr'=>'required|email|unique:users,email',
+                'passwordr'=>'required|min:3|max:32',
+                'passwordAgainr'=>'required|same:passwordr'
+            ],
+            [
+                'name.required'=>'Bạn chưa nhập tên người dùng',//required là có hay k
+                'name.min'=>'Tên người dùng phải có it nhất 3 ký tự',
+                'emailr.required'=>'Bạn chưa nhập đúng định dạng email',
+                'emailr.unique'=>'Email đã tồn tại',
+                'passwordr.required'=>'bạn chưa nhập password',
+                'passwordr.min'=>'Password phải có it nhất 3 ký tự',
+                'passwordr.max'=>'Password không được quá 32 ký tự',
+                'passwordAgainr.same'=>'Mật khẩu không khớp',
+                'passwordAgainr.required'=>'Bạn chưa nhập lại mật khẩu'
+            ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->emailr;
+        $user->password = bcrypt($request->passwordr);
+        $user->quyen = 0;
+        $user->save();
+        $this->guard()->login($user);
+        return back();
+    }
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

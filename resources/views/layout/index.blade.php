@@ -127,6 +127,20 @@
 <script src="js/main.js"></script>
 <script type="text/javascript" language="javascript" src="admin_asset/js/pages.js" ></script>
 <script type="text/javascript" language="javascript" src="admin_asset/js/buy.js" ></script>
+<script>
+    @if (session('errors-login'))
+    $('#login').modal();
+    @endif
+    @if (count($errors)>0)
+    @if($errors->first('email'))
+    $('#login').modal();
+    @elseif ($errors->first('password'))
+    $('#login').modal();
+    @else
+    $('#register').modal();
+    @endif
+    @endif
+</script>
 
 {{-- thông báo đã mua --}}
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
