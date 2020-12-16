@@ -174,4 +174,41 @@ class HomeController extends Controller
         })->take(4)->get();
         return view('pages.product-detail',compact('chitietsanpham','splienquan'));
     }
+    function viewCard(){
+        return view('pages.shopping-card');
+    }
+    public function UpdateCard(Request $request){
+        $output = '';
+        $user = Auth::user()->id;
+        $gio = GioHang::where('idUser',$user)->get();
+        $gio[$request->id]['SoLuong'] = $request->qty;
+        $gio[$request->id]->save();
+        $output = $this->refreshCard();
+        return response()->json([
+            'error'=>false,
+            'data'=>$output,
+        ]);
+    }
+    public function DeleteCard(Request $request){
+        $user = Auth::user()->id;
+        $gio = GioHang::where('idUser',$user)->get();
+        $gio[$request->id]->delete();
+        $output = $this->refreshCard();
+        return response()->json([
+            'error'=>false,
+            'data'=>$output,
+        ]);
+    }
+    function refreshCard(){
+        $output = '';
+        $gio = GioHang::where('idUser',Auth::user()->id)->get();
+        $tongtien = 0;
+        $soluong = 0;
+        foreach ($gio as $giohang){
+            $tongtien += ($giohang->ctsanpham->Gia*(100-$giohang->ctsanpham->KhuyenMai)/100) * $giohang->SoLuong;
+            $soluong += $giohang->SoLuong;
+        }
+        $output .= View::make('layout.component.detail-card', ['giohang' => $gio,'tongtien'=>$tongtien,'soluong'=>$soluong]);
+        return $output;
+    }
 }

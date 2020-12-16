@@ -129,6 +129,8 @@
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
+    var timerdate1 = 12 + '/' + 17 + '/' + 2021;
+    console.log(timerdate1);
     if(mm == 12) {
         mm = '01';
         yyyy = yyyy + 1;
@@ -145,7 +147,7 @@
     // Use this for real timer date
     /* var timerdate = "2020/01/01"; */
 
-	$("#countdown").countdown(timerdate, function(event) {
+	$("#countdown").countdown(timerdate1, function(event) {
         $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
     });
 
@@ -229,8 +231,8 @@
 		Quantity change
 	--------------------- */
     var proQty = $('.pro-qty');
-	proQty.prepend('<span class="dec qtybtn">-</span>');
-	proQty.append('<span class="inc qtybtn">+</span>');
+	// proQty.prepend('<span class="dec qtybtn">-</span>');
+	// proQty.append('<span class="inc qtybtn">+</span>');
 	proQty.on('click', '.qtybtn', function () {
 		var $button = $(this);
 		var oldValue = $button.parent().find('input').val();

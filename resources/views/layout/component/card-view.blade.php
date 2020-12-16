@@ -23,10 +23,10 @@
 </div>
 <div class="select-total">
     <span>total:</span>
-    <h5>{{number_format($tongtien)}}</h5>
+    <h5>{{number_format($tongtien)}} VNĐ</h5>
 </div>
 <div class="select-button">
-    <a href="#" class="primary-btn view-card">XEM GIỎ</a>
+    <a href="/view-card" class="primary-btn view-card">XEM GIỎ</a>
     <a href="#" class="primary-btn checkout-btn">THANH TOÁN</a>
 </div>
 

@@ -26,12 +26,72 @@ $(document).ready(function() {
         }
     }
 
+
+    function cartUpdate() {
+        let qty = $(this).parents('tr').find('input').val();
+        let urlUpdateCart = $('.pro-qty').data('url');
+        let id = $(this).closest('.pro-qty').data('id');
+        $.ajax({
+            type: "GET",
+            url: urlUpdateCart,
+            data: {
+                id: id,
+                qty: qty
+            },
+            success: function (data) {
+                $('.shopping-cart').html(data.data);
+                alertify.success('Cập nhật thành công');
+                quanty();
+            },
+            error: function () {
+
+            }
+        });
+    }
+    function cartDelete() {
+        let id = $(this).data('id');
+        let urlDeleteCart = $('.cart-table').data('url');
+        $.ajax({
+            type: "GET",
+            url: urlDeleteCart,
+            data: {
+                id: id,
+            },
+            success: function (data) {
+                $('.shopping-cart').html(data.data);
+                alertify.success('Xoá thành công');
+                quanty();
+            },
+            error: function () {
+
+            }
+        });
+    }
+
     $(function() {
         $(document).on('click', '.add_to_cart', addToCart);
-        // $(document).on('click', '.cart_update', cartUpdate);
-        // $(document).on('click', '.cart_delete', cartDelete);
+        $(document).on('click', '.close-td', cartDelete);
+        $(document).on('click', '.qtybtn',cartUpdate);
     })
     function RenderCart(response) {
         $(".cart_wrapper").html(response);
+    }
+    function quanty(){
+        var proQty = $('.pro-qty');
+        proQty.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var oldValue = $button.closest('.pro-qty').find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+            }
+            $button.closest('.pro-qty').find('input').val(newVal);
+        });
     }
 });
