@@ -126,3 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 });
 
 //Route::get('/','Controller@index');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
