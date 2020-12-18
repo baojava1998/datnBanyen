@@ -69,7 +69,7 @@
 <!-- Women Banner Section End -->
 
 <!-- Deal Of The Week Section Begin-->
-<section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
+<section class="deal-of-week set-bg spad" data-setbg="admin_asset/upload/images/san-pham/deal.png">
     <div class="container">
         <div class="col-lg-6 text-center">
             <div class="section-title">
@@ -78,7 +78,7 @@
                     consectetur adipisicing elit </p>
                 <div class="product-price">
                     $35.00
-                    <span>/ HanBag</span>
+                    <span>/ Yến</span>
                 </div>
             </div>
             <div class="countdown-timer" id="countdown">
