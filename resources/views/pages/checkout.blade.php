@@ -76,16 +76,18 @@
                             <div class="order-total">
                                 <ul class="order-table">
                                     <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
+                                    @forelse($giohang as $gio)
+                                    <li class="fw-normal"><img src="admin_asset/upload/images/san-pham/{{$gio->Hinh}}" width="50px" alt=""> - {{$gio->ctsanpham->sanpham->theloai->Ten}} x {{$gio->SoLuong}}<span>{{number_format($gio->ctsanpham->Gia*(100-$gio->ctsanpham->KhuyenMai)/100)}} VNĐ</span></li>
+                                    @empty
+                                        <li class="fw-normal">Không có sản phẩm nào</li>
+                                    @endforelse
+{{--                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>--}}
+                                    <li class="total-price">Tổng tiền <span>{{number_format($tongtien)}} VNĐ</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">
                                         <label for="pc-check">
-                                            Cheque Payment
+                                            Thanh toán trực tiếp khi nhận hàng
                                             <input type="checkbox" id="pc-check">
                                             <span class="checkmark"></span>
                                         </label>
@@ -99,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
+                                    <button type="submit" class="site-btn place-btn">Đặt hàng</button>
                                 </div>
                             </div>
                         </div>
