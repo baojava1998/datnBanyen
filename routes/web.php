@@ -30,6 +30,7 @@ Route::get('/logout', 'UserController@getDangXuat')->name('logout.page');
 Route::post('dangky','UserController@postDangky')->name('register.page');
 //buy
 Route::get('themgio/{id}', 'BuyController@ThemGio');
+Route::get('checkout', 'BuyController@CheckOut');
 //admin
 Route::get('admin/dangnhap', 'UserController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangnhapAdmin');

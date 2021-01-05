@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text product-more">
-                    <a href="./home.html"><i class="fa fa-home"></i> Home</a>
-                    <a href="./shop.html">Shop</a>
+                    <a href="./"><i class="fa fa-home"></i> Home</a>
+                    <a href="./shop">Shop</a>
                     <span>Detail</span>
                 </div>
             </div>
@@ -62,9 +62,12 @@
                             </div>
                             <div class="quantity">
                                 <div class="pro-qty">
+                                    <span class="dec qtybtn">-</span>
                                     <input type="text" value="1">
+{{--                                    <input name="cart_update" type="text" value="1">--}}
+                                    <span class="inc qtybtn">+</span>
                                 </div>
-                                <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                <a href="javascript:" data-url="themgio/{{ $chitietsanpham->id }}" data-hinh="{{$chitietsanpham->sanpham->hinh[0]->Hinh}}" data-qty="1" class="primary-btn pd-cart add_to_cart">Thêm vào giỏ</a>
                             </div>
                         </div>
                     </div>
@@ -263,7 +266,7 @@
                             <i class="icon_heart_alt"></i>
                         </div>
                         <ul>
-                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                            <li class="w-icon active"><a href="javascript:" class="add_to_cart" data-hinh="{{$splq->sanpham->hinh[0]->Hinh}}" data-qty="1" data-url="themgio/{{ $splq->id }}"><i class="icon_bag_alt"></i></a></li>
                             <li class="quick-view"><a href="/shop-detail/{{$splq->id}}">+ Chi Tiết</a></li>
                         </ul>
                     </div>

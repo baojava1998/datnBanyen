@@ -24,9 +24,9 @@
                             <td class="qua-col first-row">
                                 <div class="quantity">
                                     <div class="pro-qty" data-url="{{route('updateCard')}}" data-id="{{$id}}">
-                                        <span class="dec qtybtn" {{$gio->SoLuong == 1 ? 'hidden' : '' }}>-</span>
+                                        <span class="dec qtybtn1 qtybtn" {{$gio->SoLuong == 1 ? 'hidden' : '' }}>-</span>
                                         <input name="cart_update" type="text" value="{{$gio->SoLuong}}">
-                                        <span class="inc qtybtn">+</span>
+                                        <span class="inc qtybtn1 qtybtn">+</span>
 {{--                                        <input type="number" name="cart_update" value="{{$gio->SoLuong}}" min="1">--}}
                                     </div>
                                 </div>
@@ -57,10 +57,10 @@
                 <div class="col-lg-4 offset-lg-4">
                     <div class="proceed-checkout">
                         <ul>
-                            <li class="subtotal">Subtotal <span>{{number_format($tongtien)}} VNĐ</span></li>
-                            <li class="cart-total">Total <span>{{number_format($tongtien)}} VNĐ</span></li>
+{{--                            <li class="subtotal">Subtotal <span>{{number_format($tongtien)}} VNĐ</span></li>--}}
+                            <li class="cart-total">Tổng tiền <span>{{number_format($tongtien)}} VNĐ</span></li>
                         </ul>
-                        <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                        <a href="/checkout" class="proceed-btn">Đặt hàng</a>
                     </div>
                 </div>
             </div>

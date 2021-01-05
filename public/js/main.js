@@ -246,6 +246,7 @@
 				newVal = 0;
 			}
 		}
+		$(this).closest('.quantity').find(' > a').data('qty',newVal);
 		$button.parent().find('input').val(newVal);
 	});
 

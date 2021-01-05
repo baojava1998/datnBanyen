@@ -71,7 +71,7 @@ $(document).ready(function() {
     $(function() {
         $(document).on('click', '.add_to_cart', addToCart);
         $(document).on('click', '.close-td', cartDelete);
-        $(document).on('click', '.qtybtn',cartUpdate);
+        $(document).on('click', '.qtybtn1',cartUpdate);
     })
     function RenderCart(response) {
         $(".cart_wrapper").html(response);
@@ -91,6 +91,7 @@ $(document).ready(function() {
                     newVal = 0;
                 }
             }
+            alert(newVal)
             $button.closest('.pro-qty').find('input').val(newVal);
         });
     }

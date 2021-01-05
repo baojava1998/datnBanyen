@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
-class BuyController extends Controller
+class BuyController extends HomeController
 {
     public function ThemGio($id, Request $request)
     {
@@ -45,5 +45,10 @@ class BuyController extends Controller
             'data' => $output,
             'soluong'=>$soluong,
         ]);
+    }
+
+    public function CheckOut()
+    {
+        return view('pages.checkout');
     }
 }
