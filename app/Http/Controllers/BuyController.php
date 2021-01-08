@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FinishCheckOut;
+use App\Models\ChiTietHoaDon;
 use App\Models\GioHang;
 use App\Models\ChiTietSanPham;
+use App\Models\HoaDon;
+use App\Models\ThongTinNhanHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -50,5 +54,37 @@ class BuyController extends HomeController
     public function CheckOut()
     {
         return view('pages.checkout');
+    }
+    public function finishCheckOut(FinishCheckOut $request)
+    {
+        $hoadon = new HoaDon();
+        $hoadon->id_KhachHang = Auth::id();
+        $hoadon->Tong= $request->total;
+        $hoadon->PhuongThuc= $request->methodPay;
+        $hoadon->ThanhToan= 0;
+        $hoadon->duyet= 0;
+        $hoadon->save();
+        $sanphamcheckout = GioHang::where('idUser',Auth::id())->get();
+        foreach ($sanphamcheckout as $checkout){
+            $cthoadon = new ChiTietHoaDon();
+            $cthoadon->idHoaDon = $hoadon->id;
+            $cthoadon->idChiTiet_Sp = $checkout->idSanPham;
+            $cthoadon->SoLuong = $checkout->idSanPham;
+            $cthoadon->Gia = $checkout->Gia;
+            $cthoadon->save();
+        }
+        $thongtinnhanhang = new ThongTinNhanHang();
+        $thongtinnhanhang->idUser = Auth::id();
+        $thongtinnhanhang->idHoaDon = $hoadon->id;
+        $thongtinnhanhang->Ten = Auth::user()->name;
+        $thongtinnhanhang->DiaChi = $request->DiaChi;
+        $thongtinnhanhang->ThanhPho = $request->location;
+        $thongtinnhanhang->sdt = $request->phone;
+        $thongtinnhanhang->save();
+//xoá giỏ hàng
+        foreach ($sanphamcheckout as $item){
+            $item->delete();
+        }
+            return redirect()->route('home')->with('successCheckOut','Đặt hàng thành công');
     }
 }

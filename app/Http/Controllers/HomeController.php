@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RatingComment;
 use App\Models\ChiTietSanPham;
+use App\Models\Comment;
 use App\Models\GioHang;
 use App\Models\SanPham;
 use App\Models\Slide;
@@ -172,7 +174,34 @@ class HomeController extends Controller
         $splienquan = ChiTietSanPham::whereHas('sanpham', function($query) use ($chitietsanpham) {
             $query->where('idLoaiSanPham',$chitietsanpham->sanpham->idLoaiSanPham);
         })->take(4)->get();
-        return view('pages.product-detail',compact('chitietsanpham','splienquan'));
+        $countrt = $this->countrating($id);
+        return view('pages.product-detail',['chitietsanpham'=>$chitietsanpham,'splienquan'=>$splienquan,
+            'checkrating'=>$countrt['checkrating'],'total'=>$countrt['total'],'totalrating'=>$countrt['totalrating'],
+            'onestar'=>$countrt['onestar'],'twostar'=>$countrt['twostar'],'threestar'=>$countrt['threestar'],
+            'fourstar'=>$countrt['fourstar'],'fivestar'=>$countrt['fivestar']]);
+    }
+    function countrating($id)
+    {
+        $checkrating = Comment::where([
+            ['idUser',Auth::id()],
+            ['idChiTiet_Sp',$id]
+        ])->get();
+        $totalrating = Comment::where('idChiTiet_Sp',$id)->pluck('star');
+        $total = 0;
+        foreach ($totalrating as $tt){
+            $total += $tt;
+        }
+        if (count($totalrating) >0 ) {
+            $total = $total / count($totalrating);
+        }else{
+            $total = 0;
+        }
+        $onestar = count(Comment::where([['star',1], ['idChiTiet_Sp',$id]])->get());
+        $twostar = count(Comment::where([['star',2], ['idChiTiet_Sp',$id]])->get());
+        $threestar = count(Comment::where([['star',3], ['idChiTiet_Sp',$id]])->get());
+        $fourstar = count(Comment::where([['star',4], ['idChiTiet_Sp',$id]])->get());
+        $fivestar = count(Comment::where([['star',5], ['idChiTiet_Sp',$id]])->get());
+        return ['onestar'=>$onestar,'twostar'=>$twostar,'threestar'=>$threestar,'fourstar'=>$fourstar,'fivestar'=>$fivestar,'total'=>$total,'totalrating'=>$totalrating,'checkrating'=>$checkrating];
     }
     function viewCard(){
         return view('pages.shopping-card');
@@ -210,5 +239,33 @@ class HomeController extends Controller
         }
         $output .= View::make('layout.component.detail-card', ['giohang' => $gio,'tongtien'=>$tongtien,'soluong'=>$soluong]);
         return $output;
+    }
+    public function searchProduct(Request $request)
+    {
+        $query = $request->get('value','');
+        $posts = ChiTietSanPham::select(['TieuDe', 'id'])->where('TieuDe','LIKE','%'.$query.'%')
+            ->get();
+        return response()->json($posts);
+    }
+    public function rating(RatingComment $request)
+    {
+       $output='';
+        $comment = new Comment();
+        $comment->idUser = Auth::id();
+        $comment->idChiTiet_Sp = $request->idctsanpham;
+        $comment->NoiDung = $request->comment;
+        $comment->star = $request->rating;
+        $comment->save();
+
+        $chitietsanpham = ChiTietSanPham::find($request->idctsanpham);
+        $countrt = $this->countrating($request->idctsanpham);
+        $output .= View::make('layout.component.content-rating', ['chitietsanpham'=>$chitietsanpham,
+                'checkrating'=>$countrt['checkrating'],'total'=>$countrt['total'],'totalrating'=>$countrt['totalrating'],
+                'onestar'=>$countrt['onestar'],'twostar'=>$countrt['twostar'],'threestar'=>$countrt['threestar'],
+                'fourstar'=>$countrt['fourstar'],'fivestar'=>$countrt['fivestar']]);
+        return response()->json([
+            'error'=>false,
+            'data'=>$output,
+        ]);
     }
 }

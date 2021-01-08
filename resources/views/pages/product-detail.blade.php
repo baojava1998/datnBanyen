@@ -1,6 +1,38 @@
 @extends('layout.index')
 @section('content')
 <!-- Product Shop Section Begin -->
+<style>
+    @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+    .rating > input { display: none; }
+    .rating > label:before {
+        margin: 5px;
+        font-size: 1.25em;
+        font-family: FontAwesome;
+        display: inline-block;
+        content: "\f005";
+    }
+
+    .rating > .half:before {
+        content: "\f089";
+        position: absolute;
+    }
+
+    .rating > label {
+        color: #ddd;
+        float: right;
+    }
+
+    /***** CSS Magic to Highlight Stars on Hover *****/
+
+    .rating > input:checked ~ label, /* show gold star when clicked */
+    .rating:not(:checked) > label:hover, /* hover current star */
+    .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+    .rating > input:checked + label:hover, /* hover current star when changing rating */
+    .rating > input:checked ~ label:hover,
+    .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+    .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+</style>
 <div class="breacrumb-section">
     <div class="container">
         <div class="row">
@@ -45,12 +77,12 @@
                                 <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                             </div>
                             <div class="pd-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <span>(5)</span>
+                                <i class="fa fa-star{{($total>=1) ? "" :"-o" }}"></i>
+                                <i class="fa fa-star{{($total>=2) ? "" :"-o" }}"></i>
+                                <i class="fa fa-star{{($total>=3) ? "" :"-o" }}"></i>
+                                <i class="fa fa-star{{($total>=4) ? "" :"-o" }}"></i>
+                                <i class="fa fa-star{{($total>=5) ? "" :"-o" }}"></i>
+                                <span>({{count($totalrating)}})</span>
                             </div>
                             <div class="pd-desc">
                                 <p>{!!$chitietsanpham->TomTat !!}</p>
@@ -115,123 +147,8 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab-3" role="tabpanel">
-                                <div class="customer-review-option">
-
-                                    <span class="heading">User Rating</span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star checked"></span>
-                                    <span class="fa fa-star"></span>
-                                    <p>4.1 average based on 254 reviews.</p>
-                                    <hr style="border:3px solid #f1f1f1">
-
-                                    <div class="row">
-                                        <div class="side">
-                                            <div>5 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-5"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>150</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>4 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-4"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>63</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>3 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-3"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>15</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>2 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-2"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>6</div>
-                                        </div>
-                                        <div class="side">
-                                            <div>1 star</div>
-                                        </div>
-                                        <div class="middle">
-                                            <div class="bar-container">
-                                                <div class="bar-1"></div>
-                                            </div>
-                                        </div>
-                                        <div class="side right">
-                                            <div>20</div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <h4>{{count($chitietsanpham->comment)}} Comments</h4>
-                                    <div class="comment-option">
-                                        @foreach($chitietsanpham->comment as $cm)
-                                        <div class="co-item">
-                                            <div class="avatar-pic">
-                                                <img src="img/product-single/avatar-2.png" alt="">
-                                            </div>
-                                            <div class="avatar-text">
-                                                <div class="at-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <h5>{{$cm->user->name}} <span>27 Aug 2019</span></h5>
-                                                <div class="at-reply">{{$cm->NoiDung}}</div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="personal-rating">
-                                        <h6>Your Ratind</h6>
-                                        <div class="rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                    </div>
-                                    <div class="leave-comment">
-                                        <h4>Leave A Comment</h4>
-                                        <form action="#" class="comment-form">
-                                            <div class="row">
-{{--                                                <div class="col-lg-6">--}}
-{{--                                                    <input type="text" placeholder="Name">--}}
-{{--                                                </div>--}}
-{{--                                                <div class="col-lg-6">--}}
-{{--                                                    <input type="text" placeholder="Email">--}}
-{{--                                                </div>--}}
-                                                <div class="col-lg-12">
-                                                    <textarea placeholder="Messages"></textarea>
-                                                    <button type="submit" class="site-btn">Send message</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="raing-user">
+                                    @include('layout.component.content-rating')
                                 </div>
                             </div>
                         </div>

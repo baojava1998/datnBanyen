@@ -48,9 +48,9 @@
                         <a href="#"><img src="img/logo.png" height="50px" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello.colorlib@gmail.com</li>
+                        <li>Address: Chơn tâm 4 Đà Nẵng</li>
+                        <li>Phone: +84 37.350.4938</li>
+                        <li>Email: baojava1998@gmail.com</li>
                     </ul>
                     <div class="footer-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -127,6 +127,11 @@
 <script src="js/main.js"></script>
 <script type="text/javascript" language="javascript" src="admin_asset/js/pages.js" ></script>
 <script type="text/javascript" language="javascript" src="admin_asset/js/buy.js" ></script>
+{{--search live--}}
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/bloodhound.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.3.1/typeahead.jquery.min.js"></script>
 <script>
     @if (session('errors-login'))
     $('#login').modal();
@@ -136,6 +141,11 @@
     $('#login').modal();
     @elseif ($errors->first('password'))
     $('#login').modal();
+    @elseif ($errors->first('location'))
+    @elseif ($errors->first('DiaChi'))
+    @elseif ($errors->first('phone'))
+    @elseif ($errors->first('methodPay'))
+    @elseif ($errors->first('rating'))
     @else
     $('#register').modal();
     @endif

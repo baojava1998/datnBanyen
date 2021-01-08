@@ -27,7 +27,7 @@
 </div>
 <div class="select-button">
     <a href="/view-card" class="primary-btn view-card">XEM GIỎ</a>
-    <a href="#" class="primary-btn checkout-btn">THANH TOÁN</a>
+    <a href="/checkout" class="primary-btn checkout-btn">THANH TOÁN</a>
 </div>
 
 

@@ -91,7 +91,6 @@ $(document).ready(function() {
                     newVal = 0;
                 }
             }
-            alert(newVal)
             $button.closest('.pro-qty').find('input').val(newVal);
         });
     }

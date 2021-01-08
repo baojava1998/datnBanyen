@@ -84,4 +84,64 @@ $(document).ready(function() {
         $('.show-text-right').find('p').text('Show 1-'+" "+lengtht+" "+'Of'+" "+ $('.show-text-right').data('count'));
         return lengtht;
     }
+
+    var engine = new Bloodhound({
+        remote: {
+            url: '/search-category?value=%QUERY%',
+            wildcard: '%QUERY%'
+        },
+        datumTokenizer: Bloodhound.tokenizers.whitespace('value'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace
+    });
+    $('#search_text').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        },
+        {
+            source: engine.ttAdapter(),
+            TieuDe: 'TieuDe',
+            display: function (data) {
+                return data.TieuDe;
+            },
+            templates: {
+                empty: [
+                    '<div class="list-group search-results-dropdown"><div class="list-group-item">Nothing found.</div></div>'
+                ],
+                suggestion: function (data) {
+                    return '<div style="background: #ffffff; width:370px;"><a href="/shop-detail/' + data.id  + '"style="color: #837070; width:370px;" class="list-group-item">' + data.TieuDe + '</a></div>';
+                }
+            }
+        }
+    );
+
+    function doStrReplace(Text) {
+        return Text
+            .toLowerCase()
+            .replace(/ /g, '-')
+            .replace(/[^\w-]+/g, '')
+            ;
+    }
+    $("#idFormRating").submit(function(e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                $('.raing-user').html(data.data);
+                alertify.success('Đánh giá thành công');
+            },
+            error: function () {
+                alert('Bạn phải chọn số sao')
+            }
+        });
+
+
+    });
 });

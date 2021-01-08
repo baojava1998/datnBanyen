@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //pages
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/get-quick-view', 'HomeController@getQuickView')->name('get.QuickView');
 Route::get('/shop', 'HomeController@shop');
 Route::get('/shop-detail/{id}', 'HomeController@shopDetail');
@@ -21,7 +21,9 @@ Route::get('/seachPrice', 'HomeController@seachPrice')->name('ajax.seachPrice');
 Route::get('/load-more', 'HomeController@loadMore')->name('ajax.loadMore');
 Route::get('/view-card', 'HomeController@viewCard');
 Route::get('/update-card', 'HomeController@UpdateCard')->name('updateCard');
-Route::get('delete-card','HomeController@DeleteCard')->name('deleteCard');;
+Route::get('delete-card','HomeController@DeleteCard')->name('deleteCard');
+Route::get('/search-category', 'HomeController@searchProduct');
+Route::post('/rating', 'HomeController@rating')->name('rating');
 //login
 Route::get('/dangnhap', 'UserController@getDangnhap');
 Route::post('/dangnhap', 'UserController@postDangnhap')->name('login.page');
@@ -31,6 +33,7 @@ Route::post('dangky','UserController@postDangky')->name('register.page');
 //buy
 Route::get('themgio/{id}', 'BuyController@ThemGio');
 Route::get('checkout', 'BuyController@CheckOut');
+Route::post('finish-checkout', 'BuyController@finishCheckOut')->name('finish.checkout');
 //admin
 Route::get('admin/dangnhap', 'UserController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangnhapAdmin');

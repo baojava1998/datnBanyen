@@ -50,22 +50,25 @@
                     <div class="advanced-search">
                         <button type="button" class="category-btn">All Categories</button>
                         <div class="input-group">
-                            <input type="text" placeholder="Bạn cần gì?">
+                            <input type="text" placeholder="Bạn cần gì?" id="search_text" name="query"
+                                   value="{{ ( ! empty($value)) ? $value: '' }}">
                             <button type="button"><i class="ti-search"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
-                    <ul class="nav-right" style="display: flex;float: right">
+                    <ul class="nav-right"
+{{--                        style="display: flex;float: right"--}}
+                    >
                         <li class="heart-icon">
                             <a href="#">
                                 <i class="icon_heart_alt"></i>
                                 <span>1</span>
                             </a>
                         </li>
-                        <div id="card-view">
+{{--                        <div id="card-view">--}}
                             <li class="cart-icon">
-                                <a href="#">
+                                <a href="javascript:">
                                     <i class="icon_bag_alt"></i>
                                     <span class="soluong">{{$soluong}}</span>
                                 </a>
@@ -73,7 +76,8 @@
                                     @include('layout.component.card-view')
                                 </div>
                             </li>
-                        </div>
+{{--                        </div>--}}
+{{--                        <li class="cart-price">$150.00</li>--}}
                     </ul>
                 </div>
             </div>
