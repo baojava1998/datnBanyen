@@ -42,7 +42,7 @@
                         </div>
                         <div class="pi-text">
                             <div class="catagory-name">Towel</div>
-                            <a href="#">
+                            <a href="/shop-detail/{{$spn->id}}">
                                 <h5>{{$spn->TieuDe}}</h5>
                             </a>
                             <div class="product-price">
@@ -134,7 +134,7 @@
                         </div>
                         <div class="pi-text">
                             <div class="catagory-name">Coat</div>
-                            <a href="#">
+                            <a href="/shop-detail/{{$spx->id}}">
                                 <h5>{{$spx->TieuDe}}</h5>
                             </a>
                             <div class="product-price">

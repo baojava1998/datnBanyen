@@ -1,6 +1,6 @@
 <div class="customer-review-option">
 
-    <span class="heading">User Rating</span>
+    <span class="heading">Người dùng đánh giá</span>
     <span class="fa fa-star {{($total>=1) ? "checked" :"" }}"></span>
     <span class="fa fa-star {{($total>=2) ? "checked" :"" }}"></span>
     <span class="fa fa-star {{($total>=3) ? "checked" :"" }}"></span>
