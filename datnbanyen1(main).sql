@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 08, 2021 lúc 10:27 AM
--- Phiên bản máy phục vụ: 10.4.6-MariaDB
--- Phiên bản PHP: 7.3.8
+-- Host: 127.0.0.1
+-- Generation Time: Jan 08, 2021 at 08:02 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `datnbanyen1`
+-- Database: `datnbanyen1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitiet_hdon`
+-- Table structure for table `chitiet_hdon`
 --
 
 CREATE TABLE `chitiet_hdon` (
@@ -38,10 +38,22 @@ CREATE TABLE `chitiet_hdon` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `chitiet_hdon`
+--
+
+INSERT INTO `chitiet_hdon` (`id`, `idHoaDon`, `idChiTiet_Sp`, `SoLuong`, `Gia`, `created_at`, `updated_at`) VALUES
+(1, 4, 22, 22, 4300000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
+(2, 4, 23, 23, 3800000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
+(3, 4, 24, 24, 3600000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
+(4, 6, 22, 22, 4300000, '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
+(5, 7, 26, 26, 130000, '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
+(6, 8, 28, 28, 100000, '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitiet_sp`
+-- Table structure for table `chitiet_sp`
 --
 
 CREATE TABLE `chitiet_sp` (
@@ -58,7 +70,7 @@ CREATE TABLE `chitiet_sp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `chitiet_sp`
+-- Dumping data for table `chitiet_sp`
 --
 
 INSERT INTO `chitiet_sp` (`id`, `TieuDe`, `TieuDeKhongDau`, `TomTat`, `NoiDung`, `idSanPham`, `Gia`, `KhuyenMai`, `created_at`, `updated_at`) VALUES
@@ -74,31 +86,37 @@ INSERT INTO `chitiet_sp` (`id`, `TieuDe`, `TieuDeKhongDau`, `TomTat`, `NoiDung`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `idUser` int(10) UNSIGNED NOT NULL,
   `idChiTiet_Sp` int(10) UNSIGNED NOT NULL,
-  `NoiDung` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `NoiDung` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `star` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `comment`
+-- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id`, `idUser`, `idChiTiet_Sp`, `NoiDung`, `created_at`, `updated_at`) VALUES
-(1, 16, 22, 'ngon quá ngon', NULL, NULL),
-(2, 17, 22, 'quá ngon đi', NULL, NULL),
-(3, 18, 30, 'oke ngon', NULL, NULL);
+INSERT INTO `comment` (`id`, `idUser`, `idChiTiet_Sp`, `NoiDung`, `star`, `created_at`, `updated_at`) VALUES
+(1, 16, 22, 'ok tạm', 2, NULL, NULL),
+(2, 17, 22, 'quá ngon đi', 5, NULL, NULL),
+(3, 18, 30, 'oke ngon', 3, NULL, NULL),
+(6, 18, 23, 'ok', 4, '2021-01-08 09:44:20', '2021-01-08 09:44:20'),
+(7, 1, 23, 'ok', 4, NULL, NULL),
+(8, 2, 23, 'ok ok ok', 5, NULL, NULL),
+(14, 18, 22, 'quá ngon', 5, '2021-01-08 11:44:27', '2021-01-08 11:44:27'),
+(15, 18, 24, 'giao sai hàng', 1, '2021-01-08 11:54:50', '2021-01-08 11:54:50');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Table structure for table `giohang`
 --
 
 CREATE TABLE `giohang` (
@@ -115,22 +133,19 @@ CREATE TABLE `giohang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `giohang`
+-- Dumping data for table `giohang`
 --
 
 INSERT INTO `giohang` (`id`, `SanPham`, `Gia`, `Hinh`, `idSanPham`, `SoLuong`, `idUser`, `XacNhan`, `created_at`, `updated_at`) VALUES
 (1, 'HỒNG YẾN LÀM SẠCH HỘP 100GAM ( CÓ HỘP QUÀ)', 4300000, 'hong-yen-tinh-che-4.jpg', 22, 3, 16, 0, '2020-11-25 01:54:19', '2020-12-16 22:45:41'),
 (2, 'YẾN SÀO KHÁNH HÒA LÀM SẠCH HỘP 100G LOẠI 1 (CÓ HỘP QUÀ)', 3800000, '6.jpg', 23, 3, 16, 0, '2020-11-25 01:54:40', '2020-12-16 05:33:37'),
-(5, 'HỒNG YẾN LÀM SẠCH HỘP 100GAM ( CÓ HỘP QUÀ)', 4300000, 'hong-yen-tinh-che-4.jpg', 22, 2, 18, 0, '2020-12-14 23:13:23', '2021-01-07 23:43:34'),
 (13, 'Nước Yến Sào Sanest Nhân Sâm Fucoidan Khánh Hòa', 130000, 'Nước-Yến-Sào-Sanest-Nhân-Sâm-Fucoidan-2.jpg', 26, 1, 16, 0, '2020-12-16 05:34:58', '2020-12-16 05:39:23'),
-(16, 'Nước Yến Tươi Chưng Hạt Sen', 100000, 'Nước-Yến-Tươi-Chưng-Hạt-Sen-4-600x400.jpg', 28, 3, 25, 0, '2020-12-17 01:23:35', '2020-12-17 01:28:48'),
-(17, 'YẾN SÀO KHÁNH HÒA LÀM SẠCH HỘP 100G LOẠI 1 (CÓ HỘP QUÀ)', 3800000, '6.jpg', 23, 1, 18, 0, '2021-01-05 08:05:21', '2021-01-05 08:05:21'),
-(18, 'YẾN SÀO KHÁNH HÒA CHÂN YẾN LÀM SẠCH HỘP 100G', 3600000, 'chan-yen-tinh-che-3.jpg', 24, 2, 18, 0, '2021-01-05 08:06:20', '2021-01-05 08:06:20');
+(16, 'Nước Yến Tươi Chưng Hạt Sen', 100000, 'Nước-Yến-Tươi-Chưng-Hạt-Sen-4-600x400.jpg', 28, 3, 25, 0, '2020-12-17 01:23:35', '2020-12-17 01:28:48');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hinh`
+-- Table structure for table `hinh`
 --
 
 CREATE TABLE `hinh` (
@@ -142,7 +157,7 @@ CREATE TABLE `hinh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hinh`
+-- Dumping data for table `hinh`
 --
 
 INSERT INTO `hinh` (`id`, `idSanPham`, `Hinh`, `created_at`, `updated_at`) VALUES
@@ -174,22 +189,35 @@ INSERT INTO `hinh` (`id`, `idSanPham`, `Hinh`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hoadon`
+-- Table structure for table `hoadon`
 --
 
 CREATE TABLE `hoadon` (
   `id` int(11) UNSIGNED NOT NULL,
   `id_KhachHang` int(10) UNSIGNED NOT NULL,
   `Tong` double NOT NULL,
-  `ThanhToan` text COLLATE utf8_unicode_ci NOT NULL,
+  `ThanhToan` tinyint(4) NOT NULL DEFAULT 0,
+  `duyet` int(11) NOT NULL DEFAULT 0,
+  `PhuongThuc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `hoadon`
+--
+
+INSERT INTO `hoadon` (`id`, `id_KhachHang`, `Tong`, `ThanhToan`, `duyet`, `PhuongThuc`, `created_at`, `updated_at`) VALUES
+(4, 18, 18120000, 0, 0, 'nhận hàng', '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
+(5, 18, 18120000, 0, 0, 'nhận hàng', '2021-01-08 02:53:58', '2021-01-08 02:53:58'),
+(6, 18, 17200000, 0, 0, 'nhận hàng', '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
+(7, 18, 247000, 0, 0, 'nhận hàng', '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
+(8, 18, 180000, 0, 0, 'thẻ', '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `loai_sanpham`
+-- Table structure for table `loai_sanpham`
 --
 
 CREATE TABLE `loai_sanpham` (
@@ -201,7 +229,7 @@ CREATE TABLE `loai_sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `loai_sanpham`
+-- Dumping data for table `loai_sanpham`
 --
 
 INSERT INTO `loai_sanpham` (`id`, `Ten`, `TenKhongDau`, `created_at`, `updated_at`) VALUES
@@ -211,7 +239,7 @@ INSERT INTO `loai_sanpham` (`id`, `Ten`, `TenKhongDau`, `created_at`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -220,7 +248,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
@@ -239,7 +267,7 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -251,7 +279,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -264,7 +292,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`id`, `Ten`, `TenKhongDau`, `idLoaiSanPham`, `created_at`, `updated_at`) VALUES
@@ -281,7 +309,7 @@ INSERT INTO `sanpham` (`id`, `Ten`, `TenKhongDau`, `idLoaiSanPham`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `slide`
+-- Table structure for table `slide`
 --
 
 CREATE TABLE `slide` (
@@ -295,7 +323,7 @@ CREATE TABLE `slide` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `slide`
+-- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `Ten`, `Hinh`, `NoiDung`, `link`, `created_at`, `updated_at`) VALUES
@@ -305,7 +333,7 @@ INSERT INTO `slide` (`id`, `Ten`, `Hinh`, `NoiDung`, `link`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongtin_nhanhang`
+-- Table structure for table `thongtin_nhanhang`
 --
 
 CREATE TABLE `thongtin_nhanhang` (
@@ -320,10 +348,22 @@ CREATE TABLE `thongtin_nhanhang` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `thongtin_nhanhang`
+--
+
+INSERT INTO `thongtin_nhanhang` (`id`, `idUser`, `idHoaDon`, `Ten`, `DiaChi`, `ThanhPho`, `sdt`, `created_at`, `updated_at`) VALUES
+(1, 18, 3, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:48:01', '2021-01-08 02:48:01'),
+(2, 18, 4, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
+(3, 18, 5, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:53:58', '2021-01-08 02:53:58'),
+(4, 18, 6, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
+(5, 18, 7, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
+(6, 18, 8, 'baopro', 'Chơn tâm 5', 'quảng nam', 373504938, '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -338,7 +378,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `quyen`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -362,11 +402,11 @@ INSERT INTO `users` (`id`, `name`, `email`, `quyen`, `password`, `remember_token
 (25, 'test login 5', 'baogin5@gmail.com', 0, '$2y$10$du6.EL1y5wEDmUwkcBWgLeRLOXR675N17EnWXsCx0/VE4Igy5TyMK', NULL, '2020-12-17 01:23:23', '2020-12-17 01:23:23');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `chitiet_hdon`
+-- Indexes for table `chitiet_hdon`
 --
 ALTER TABLE `chitiet_hdon`
   ADD PRIMARY KEY (`id`),
@@ -374,14 +414,14 @@ ALTER TABLE `chitiet_hdon`
   ADD KEY `idHoaDon` (`idHoaDon`);
 
 --
--- Chỉ mục cho bảng `chitiet_sp`
+-- Indexes for table `chitiet_sp`
 --
 ALTER TABLE `chitiet_sp`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idSanPham` (`idSanPham`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
@@ -389,7 +429,7 @@ ALTER TABLE `comment`
   ADD KEY `idUser` (`idUser`);
 
 --
--- Chỉ mục cho bảng `giohang`
+-- Indexes for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD PRIMARY KEY (`id`),
@@ -397,46 +437,46 @@ ALTER TABLE `giohang`
   ADD KEY `idUser` (`idUser`);
 
 --
--- Chỉ mục cho bảng `hinh`
+-- Indexes for table `hinh`
 --
 ALTER TABLE `hinh`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idSanPham` (`idSanPham`);
 
 --
--- Chỉ mục cho bảng `hoadon`
+-- Indexes for table `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `loai_sanpham`
+-- Indexes for table `loai_sanpham`
 --
 ALTER TABLE `loai_sanpham`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`),
   ADD KEY `password_resets_token_index` (`token`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idLoaiSanPham` (`idLoaiSanPham`);
 
 --
--- Chỉ mục cho bảng `slide`
+-- Indexes for table `slide`
 --
 ALTER TABLE `slide`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `thongtin_nhanhang`
+-- Indexes for table `thongtin_nhanhang`
 --
 ALTER TABLE `thongtin_nhanhang`
   ADD PRIMARY KEY (`id`),
@@ -444,121 +484,121 @@ ALTER TABLE `thongtin_nhanhang`
   ADD KEY `idHoaDon` (`idHoaDon`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `chitiet_hdon`
+-- AUTO_INCREMENT for table `chitiet_hdon`
 --
 ALTER TABLE `chitiet_hdon`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `chitiet_sp`
+-- AUTO_INCREMENT for table `chitiet_sp`
 --
 ALTER TABLE `chitiet_sp`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT cho bảng `giohang`
+-- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `hinh`
+-- AUTO_INCREMENT for table `hinh`
 --
 ALTER TABLE `hinh`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
--- AUTO_INCREMENT cho bảng `hoadon`
+-- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `loai_sanpham`
+-- AUTO_INCREMENT for table `loai_sanpham`
 --
 ALTER TABLE `loai_sanpham`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT cho bảng `slide`
+-- AUTO_INCREMENT for table `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT cho bảng `thongtin_nhanhang`
+-- AUTO_INCREMENT for table `thongtin_nhanhang`
 --
 ALTER TABLE `thongtin_nhanhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `chitiet_hdon`
+-- Constraints for table `chitiet_hdon`
 --
 ALTER TABLE `chitiet_hdon`
   ADD CONSTRAINT `chitiet_hdon_ibfk_1` FOREIGN KEY (`idHoaDon`) REFERENCES `hoadon` (`id`),
   ADD CONSTRAINT `chitiet_hdon_ibfk_2` FOREIGN KEY (`idChiTiet_Sp`) REFERENCES `chitiet_sp` (`id`);
 
 --
--- Các ràng buộc cho bảng `chitiet_sp`
+-- Constraints for table `chitiet_sp`
 --
 ALTER TABLE `chitiet_sp`
   ADD CONSTRAINT `chitiet_sp_ibfk_1` FOREIGN KEY (`idSanPham`) REFERENCES `sanpham` (`id`);
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`idChiTiet_Sp`) REFERENCES `chitiet_sp` (`id`);
 
 --
--- Các ràng buộc cho bảng `giohang`
+-- Constraints for table `giohang`
 --
 ALTER TABLE `giohang`
   ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`idSanPham`) REFERENCES `chitiet_sp` (`id`),
   ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`idUser`) REFERENCES `users` (`id`);
 
 --
--- Các ràng buộc cho bảng `hinh`
+-- Constraints for table `hinh`
 --
 ALTER TABLE `hinh`
   ADD CONSTRAINT `hinh_ibfk_1` FOREIGN KEY (`idSanPham`) REFERENCES `sanpham` (`id`);
 
 --
--- Các ràng buộc cho bảng `sanpham`
+-- Constraints for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`idLoaiSanPham`) REFERENCES `loai_sanpham` (`id`);
