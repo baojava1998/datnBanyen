@@ -23,6 +23,7 @@
                         <th>Tổng tiền</th>
                         <th>Thanh toán</th>
                         <th>Phương thức </th>
+                        <th>Địa chỉ </th>
                         <th>Duyệt</th>
                         <th>Chi tiết đơn hàng</th>
                     </tr>
@@ -41,6 +42,7 @@
                             </td>
                             <td>{{$dh->ThanhToan}}</td>
                             <td>{{$dh->PhuongThuc}}</td>
+                            <td>{{$dh->ttnhanhang->DiaChi}} - {{$dh->ttnhanhang->ThanhPho}}</td>
                             <td class="center"><i class="fa fa-check fa-fw"></i> <a
                                     href="" data-id="{{$dh->id}}" class="donebill" data-url="{{route('done.bill')}}">Duyệt</a></td>
                             <td class="center"><i class="fa fa fa-ellipsis-h fa-fw"></i> <a

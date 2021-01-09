@@ -8,7 +8,7 @@
 {{--                        <span>Bag,kids</span>--}}
                         <h1>{{$sl->Ten}}</h1>
                         <p>{!!$sl->NoiDung!!}</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+                        <a href="/shop" class="primary-btn">Shop Now</a>
                     </div>
                 </div>
                 <div class="off-card">

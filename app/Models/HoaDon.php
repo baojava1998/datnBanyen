@@ -23,4 +23,8 @@ class HoaDon extends Model
     {
         return $this->belongsTo('App\Models\User','id_KhachHang','id');
     }
+    public function ttnhanhang()
+    {
+        return $this->hasOne('App\Models\ThongTinNhanHang','idHoaDon','id');
+    }
 }

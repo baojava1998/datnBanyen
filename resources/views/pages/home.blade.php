@@ -99,7 +99,7 @@
                     <p>Secs</p>
                 </div>
             </div>
-            <a href="#" class="primary-btn">Shop Now</a>
+            <a href="/TheLoai?sale=true" class="primary-btn">Shop Now</a>
         </div>
     </div>
 </section>
