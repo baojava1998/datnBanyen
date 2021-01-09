@@ -14,13 +14,13 @@ class HoaDon extends Model
     ];
 
 
-    public function ctsanpham()
+    public function cthoadon()
     {
-        return $this->belongsTo('App\Models\ChiTietSanPham','idSanPham','id');
+        return $this->hasOne('App\Models\ChiTietHoaDon','idHoaDon','id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User','idUser','id');
+        return $this->belongsTo('App\Models\User','id_KhachHang','id');
     }
 }

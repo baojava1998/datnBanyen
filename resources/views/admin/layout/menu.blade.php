@@ -75,6 +75,15 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                <a href="admin/donhang/danhsach"><i class="fa fa-truck fa-fw" aria-hidden="true"></i> Đơn hàng<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="admin/donhang/danhsach">Danh sách đơn hàng</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

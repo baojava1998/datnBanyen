@@ -127,6 +127,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('ctsanpham/{idTheLoai}', 'AjaxController@getSanPham');
     });
+
+    Route::group(['prefix' => 'donhang'], function () {
+        Route::get('danhsach', 'DonhangController@getDanhSach');
+        Route::get('getDetailBill', 'DonhangController@getDetailBill')->name('detail.bill');
+        Route::get('duyetbill', 'DonhangController@doneBill')->name('done.bill');
+    });
 });
 
 //Route::get('/','Controller@index');

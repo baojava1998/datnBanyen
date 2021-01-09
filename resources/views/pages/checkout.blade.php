@@ -75,6 +75,7 @@
                                     <div class="pc-item">
                                         <label for="pc-check">
                                             Thanh toán trực tiếp khi nhận hàng
+                                            <i class="fa fa-truck" aria-hidden="true"></i>
                                             <input type="checkbox" id="pc-check" name="methodPay" value="nhận hàng">
                                             <span class="checkmark"></span>
                                         </label>
@@ -82,6 +83,7 @@
                                     <div class="pc-item">
                                         <label for="pc-paypal">
                                             Paypal
+                                            <i class="fa fa-cc-paypal" aria-hidden="true"></i>
                                             <input type="checkbox" id="pc-paypal" name="methodPay" value="thẻ">
                                             <span class="checkmark"></span>
                                         </label>

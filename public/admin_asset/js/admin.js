@@ -102,4 +102,38 @@ $(document).ready(function() {
     function RenderTL(response) {
         $("#dataTables-example").html(response);
     }
+
+    $(document).on('click','.tg_detailbill',function (e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        let url = $(this).data('url');
+        let name = $(this).data('name');
+        _this = $(this);
+        $.ajax({
+            url: url,
+            data:{
+                id: id,
+                name:name
+            },
+            success: function (data) {
+                $('#detailbill').find('.modal-content').html(data.data);
+            }
+        });
+    })
+    $(document).on('click','.donebill',function (e){
+        e.preventDefault();
+        let id = $(this).data('id');
+        let url = $(this).data('url');
+        _this = $(this);
+        $.ajax({
+            url: url,
+            data:{
+                id: id,
+            },
+            success: function (data) {
+                _this.closest('tr').remove();
+                alertify.success('Duyệt thành công');
+            }
+        });
+    })
 });

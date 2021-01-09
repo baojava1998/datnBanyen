@@ -69,7 +69,7 @@ class BuyController extends HomeController
             $cthoadon = new ChiTietHoaDon();
             $cthoadon->idHoaDon = $hoadon->id;
             $cthoadon->idChiTiet_Sp = $checkout->idSanPham;
-            $cthoadon->SoLuong = $checkout->idSanPham;
+            $cthoadon->SoLuong = $checkout->SoLuong;
             $cthoadon->Gia = $checkout->Gia;
             $cthoadon->save();
         }
