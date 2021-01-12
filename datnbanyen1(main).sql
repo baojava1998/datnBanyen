@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2021 at 08:02 PM
+-- Generation Time: Jan 10, 2021 at 10:51 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -43,12 +43,11 @@ CREATE TABLE `chitiet_hdon` (
 --
 
 INSERT INTO `chitiet_hdon` (`id`, `idHoaDon`, `idChiTiet_Sp`, `SoLuong`, `Gia`, `created_at`, `updated_at`) VALUES
-(1, 4, 22, 22, 4300000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
-(2, 4, 23, 23, 3800000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
-(3, 4, 24, 24, 3600000, '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
-(4, 6, 22, 22, 4300000, '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
-(5, 7, 26, 26, 130000, '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
-(6, 8, 28, 28, 100000, '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+(7, 9, 22, 3, 4300000, '2021-01-09 00:24:09', '2021-01-09 00:24:09'),
+(8, 9, 23, 3, 3800000, '2021-01-09 00:24:09', '2021-01-09 00:24:09'),
+(9, 9, 26, 1, 130000, '2021-01-09 00:24:10', '2021-01-09 00:24:10'),
+(10, 10, 28, 4, 100000, '2021-01-09 00:24:55', '2021-01-09 00:24:55'),
+(11, 10, 26, 3, 130000, '2021-01-09 00:24:55', '2021-01-09 00:24:55');
 
 -- --------------------------------------------------------
 
@@ -137,9 +136,6 @@ CREATE TABLE `giohang` (
 --
 
 INSERT INTO `giohang` (`id`, `SanPham`, `Gia`, `Hinh`, `idSanPham`, `SoLuong`, `idUser`, `XacNhan`, `created_at`, `updated_at`) VALUES
-(1, 'HỒNG YẾN LÀM SẠCH HỘP 100GAM ( CÓ HỘP QUÀ)', 4300000, 'hong-yen-tinh-che-4.jpg', 22, 3, 16, 0, '2020-11-25 01:54:19', '2020-12-16 22:45:41'),
-(2, 'YẾN SÀO KHÁNH HÒA LÀM SẠCH HỘP 100G LOẠI 1 (CÓ HỘP QUÀ)', 3800000, '6.jpg', 23, 3, 16, 0, '2020-11-25 01:54:40', '2020-12-16 05:33:37'),
-(13, 'Nước Yến Sào Sanest Nhân Sâm Fucoidan Khánh Hòa', 130000, 'Nước-Yến-Sào-Sanest-Nhân-Sâm-Fucoidan-2.jpg', 26, 1, 16, 0, '2020-12-16 05:34:58', '2020-12-16 05:39:23'),
 (16, 'Nước Yến Tươi Chưng Hạt Sen', 100000, 'Nước-Yến-Tươi-Chưng-Hạt-Sen-4-600x400.jpg', 28, 3, 25, 0, '2020-12-17 01:23:35', '2020-12-17 01:28:48');
 
 -- --------------------------------------------------------
@@ -208,11 +204,8 @@ CREATE TABLE `hoadon` (
 --
 
 INSERT INTO `hoadon` (`id`, `id_KhachHang`, `Tong`, `ThanhToan`, `duyet`, `PhuongThuc`, `created_at`, `updated_at`) VALUES
-(4, 18, 18120000, 0, 0, 'nhận hàng', '2021-01-08 02:49:44', '2021-01-08 02:49:44'),
-(5, 18, 18120000, 0, 0, 'nhận hàng', '2021-01-08 02:53:58', '2021-01-08 02:53:58'),
-(6, 18, 17200000, 0, 0, 'nhận hàng', '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
-(7, 18, 247000, 0, 0, 'nhận hàng', '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
-(8, 18, 180000, 0, 0, 'thẻ', '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+(9, 16, 22143500, 0, 0, 'nhận hàng', '2021-01-09 00:24:09', '2021-01-09 01:35:14'),
+(10, 18, 730500, 0, 1, 'thẻ', '2021-01-09 00:24:55', '2021-01-09 01:38:36');
 
 -- --------------------------------------------------------
 
@@ -235,6 +228,22 @@ CREATE TABLE `loai_sanpham` (
 INSERT INTO `loai_sanpham` (`id`, `Ten`, `TenKhongDau`, `created_at`, `updated_at`) VALUES
 (1, 'Yến Sào', 'yen-sao', NULL, '2020-11-03 21:26:23'),
 (2, 'Nước yến', 'nuoc-yen', NULL, '2020-11-03 20:22:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `from` int(11) UNSIGNED NOT NULL,
+  `to` bigint(20) NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_read` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -327,8 +336,8 @@ CREATE TABLE `slide` (
 --
 
 INSERT INTO `slide` (`id`, `Ten`, `Hinh`, `NoiDung`, `link`, `created_at`, `updated_at`) VALUES
-(6, 'baobtm', '46I8_2.jpg', '<p>baobtm1111</p>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -34px; top: 38.6px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', 'baobtm.com', '2020-11-16 21:39:51', '2020-11-16 22:00:09'),
-(7, 'bán yến', 'TiIN_hero-1.jpg', '<p>bán yến</p>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -62px; top: -4.8px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', 'baobanyen.com', '2020-11-16 21:51:38', '2020-11-16 21:51:38');
+(6, 'Nước yến', '46I8_2.jpg', '<p>Ngon ngọt bổ dưỡng</p>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -34px; top: 38.6px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', 'baobtm.com', '2020-11-16 21:39:51', '2020-11-16 22:00:09'),
+(7, 'Yến xào', 'TiIN_hero-1.jpg', '<p>Thươm ngon</p>\r\n\r\n<div id=\"gtx-trans\" style=\"position: absolute; left: -62px; top: -4.8px;\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', 'baobanyen.com', '2020-11-16 21:51:38', '2020-11-16 21:51:38');
 
 -- --------------------------------------------------------
 
@@ -358,7 +367,9 @@ INSERT INTO `thongtin_nhanhang` (`id`, `idUser`, `idHoaDon`, `Ten`, `DiaChi`, `T
 (3, 18, 5, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:53:58', '2021-01-08 02:53:58'),
 (4, 18, 6, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:57:01', '2021-01-08 02:57:01'),
 (5, 18, 7, 'baopro', 'chơn tâm 4 Đà nẵng', 'Đà Nẵng', 373504938, '2021-01-08 02:58:30', '2021-01-08 02:58:30'),
-(6, 18, 8, 'baopro', 'Chơn tâm 5', 'quảng nam', 373504938, '2021-01-08 08:30:07', '2021-01-08 08:30:07');
+(6, 18, 8, 'baopro', 'Chơn tâm 5', 'quảng nam', 373504938, '2021-01-08 08:30:07', '2021-01-08 08:30:07'),
+(7, 16, 9, 'Huỳnh Duy Bảo', 'Chơn tâm 5', 'quảng nam', 373504938, '2021-01-09 00:24:10', '2021-01-09 00:24:10'),
+(8, 18, 10, 'baopro', '45 phan thanh', 'Đà Nẵng', 373504444, '2021-01-09 00:24:55', '2021-01-09 00:24:55');
 
 -- --------------------------------------------------------
 
@@ -498,7 +509,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chitiet_hdon`
 --
 ALTER TABLE `chitiet_hdon`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `chitiet_sp`
@@ -516,7 +527,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `giohang`
 --
 ALTER TABLE `giohang`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `hinh`
@@ -528,7 +539,7 @@ ALTER TABLE `hinh`
 -- AUTO_INCREMENT for table `hoadon`
 --
 ALTER TABLE `hoadon`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `loai_sanpham`
@@ -552,7 +563,7 @@ ALTER TABLE `slide`
 -- AUTO_INCREMENT for table `thongtin_nhanhang`
 --
 ALTER TABLE `thongtin_nhanhang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
