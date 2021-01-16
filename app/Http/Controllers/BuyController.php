@@ -7,6 +7,8 @@ use App\Models\ChiTietHoaDon;
 use App\Models\GioHang;
 use App\Models\ChiTietSanPham;
 use App\Models\HoaDon;
+use App\Models\Slide;
+use App\Models\TheLoai;
 use App\Models\ThongTinNhanHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,11 +34,33 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
-class BuyController extends HomeController
+class BuyController extends Controller
 {
     private $paylanding;
+    private $_api_context;
     public function __construct(PaypalController $paylanding)
     {
+        $theloai = TheLoai::all();
+        $slide = Slide::all();
+        $sanphamall = ChiTietSanPham::all();
+        view()->share('theloai',$theloai);
+        view()->share('slide',$slide);
+        view()->share('sanphamall',$sanphamall);
+        $this->middleware(function ($request, $next) {
+            $this->user= Auth::user();
+            $giohang = GioHang::where('idUser',Auth::id())->get();
+            $tongtien = 0;
+            $soluong = 0;
+            foreach ($giohang as $gio){
+                $tongtien += ($gio->ctsanpham->Gia*(100-$gio->ctsanpham->KhuyenMai)/100) * $gio->SoLuong;
+                $soluong += $gio->SoLuong;
+            }
+            view()->share('giohang',$giohang);
+            view()->share('tongtien',$tongtien);
+            view()->share('soluong',$soluong);
+            return $next($request);
+        });
+
         /** setup PayPal api context **/
         $this->paylanding = $paylanding;
 
@@ -87,10 +111,16 @@ class BuyController extends HomeController
     }
     public function finishCheckOut(FinishCheckOut $request)
     {
-        dd($request->all());
         if ($request->methodPay == 'thẻ'){
-//            $priceData = Price::where('type',Price::IS_LANDINGPAGE)->first();
-            $priceData = $request->
+            $ttkh = [
+                'DiaChi'=>$request->DiaChi,
+                'ThanhPho'=>$request->location,
+                'phone'=>$request->phone,
+                'total'=>$request->total
+            ];
+            session()->put('ttkh',$ttkh);
+            $dola = 0.0000431873;
+            $priceData = $request->total * $dola;
             $payer = new Payer();
             $payer->setPaymentMethod('paypal');
 
@@ -99,14 +129,14 @@ class BuyController extends HomeController
             $item_1->setName('Item 1') /** item name **/
             ->setCurrency('USD')
                 ->setQuantity(1)
-                ->setPrice($priceData->price); /** unit price **/
+                ->setPrice($priceData); /** unit price **/
 
             $item_list = new ItemList();
             $item_list->setItems(array($item_1));
 
             $amount = new Amount();
             $amount->setCurrency('USD')
-                ->setTotal($priceData->price);
+                ->setTotal($priceData);
 
             $transaction = new Transaction();
             $transaction->setAmount($amount)
@@ -128,13 +158,13 @@ class BuyController extends HomeController
             } catch (\PayPal\Exception\PPConnectionException $ex) {
                 if (\Config::get('app.debug')) {
                     \Session::put('error','Connection timeout');
-                    return Redirect::route('landingNews');
+                    return Redirect::route('home');
                     /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                     /** $err_data = json_decode($ex->getData(), true); **/
                     /** exit; **/
                 } else {
                     \Session::put('error','Some error occur, sorry for inconvenient');
-                    return Redirect::route('landingNews');
+                    return Redirect::route('home');
                     /** die('Some error occur, sorry for inconvenient'); **/
                 }
             }
@@ -155,7 +185,7 @@ class BuyController extends HomeController
             }
 
             \Session::put('error','Unknown error occurred');
-            return Redirect::route('landingNews');
+            return Redirect::route()->back();
         }
         $hoadon = new HoaDon();
         $hoadon->id_KhachHang = Auth::id();

@@ -34,6 +34,7 @@ Route::post('dangky','UserController@postDangky')->name('register.page');
 Route::get('themgio/{id}', 'BuyController@ThemGio');
 Route::get('checkout', 'BuyController@CheckOut');
 Route::post('finish-checkout', 'BuyController@finishCheckOut')->name('finish.checkout');
+Route::get('paypal', array('as' => 'status','uses' => 'PaypalController@getPaymentStatus',));
 //admin
 Route::get('admin/dangnhap', 'UserController@getDangnhapAdmin');
 Route::post('admin/dangnhap', 'UserController@postDangnhapAdmin');

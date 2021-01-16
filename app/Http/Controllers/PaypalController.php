@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietHoaDon;
+use App\Models\GioHang;
+use App\Models\HoaDon;
+use App\Models\ThongTinNhanHang;
 use Illuminate\Http\Request;
 use App\Services\General;
 use Illuminate\Support\Facades\Auth;
@@ -158,23 +162,38 @@ class PaypalController extends Controller
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
 
+            $ttkh = session()->get('ttkh');
+            $hoadon = new HoaDon();
+            $hoadon->id_KhachHang = Auth::id();
+            $hoadon->Tong= $ttkh['total'];
+            $hoadon->PhuongThuc= 'thẻ';
+            $hoadon->ThanhToan= 1;
+            $hoadon->duyet= 0;
+            $hoadon->save();
+            $sanphamcheckout = GioHang::where('idUser',Auth::id())->get();
+            foreach ($sanphamcheckout as $checkout){
+                $cthoadon = new ChiTietHoaDon();
+                $cthoadon->idHoaDon = $hoadon->id;
+                $cthoadon->idChiTiet_Sp = $checkout->idSanPham;
+                $cthoadon->SoLuong = $checkout->SoLuong;
+                $cthoadon->Gia = $checkout->Gia;
+                $cthoadon->save();
+            }
+            $thongtinnhanhang = new ThongTinNhanHang();
+            $thongtinnhanhang->idUser = Auth::id();
+            $thongtinnhanhang->idHoaDon = $hoadon->id;
+            $thongtinnhanhang->Ten = Auth::user()->name;
+            $thongtinnhanhang->DiaChi = $ttkh['DiaChi'];
+            $thongtinnhanhang->ThanhPho = $ttkh['ThanhPho'];
+            $thongtinnhanhang->sdt = $ttkh['phone'];
+            $thongtinnhanhang->save();
+//xoá giỏ hàng
+            foreach ($sanphamcheckout as $item){
+                $item->delete();
+            }
 
-            $history1 = (object)['email_paypal'=>Auth::user()->email];
-            $history = $this->generalService->history($history1);
-            $priceData = Price::where('type',Price::IS_LANDINGPAGE)->first();
-            $historytask = $this->generalService->historytask($history);
-            $dataInput['test_id'] = $historytask->test_id;
-            $dataInput['price'] = $priceData->price;
-            $emailPaypal = $history1->email_paypal;
-            $dataInput['email_paypal'] = $emailPaypal;
-            Mail::send('mails.payment-landing', $dataInput, function ($message) use ($emailPaypal) {
-                $message->to($emailPaypal)->subject('Payment Successful');
-                $message->from(env('ADMIN_EMAIL'), trans('attributes.title-site-team'));
-            });
-
-            $this->generalService->paymentHistory($priceData->price,$emailPaypal);
-            \Session::put('success','Payment success');
-            return redirect()->route('user.onlineTest', ['id' => $historytask->test_id, 'email' => $emailPaypal]);
+            \Session::put('successCheckOut','Payment success');
+            return redirect()->route('home');
         }
         \Session::put('errorpayment','Payment failed');
 
