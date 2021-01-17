@@ -34,9 +34,14 @@
 
 <!-- Header Section Begin -->
 @include('layout.header')
+@if(Auth::check())
+@include('home')
+@endif
 <!-- Header End -->
 
 @yield('content')
+
+<img src="img/chat.png" class="open-button" onclick="openForm()">
 
 <!-- Footer Section Begin -->
 <footer class="footer-section">
@@ -150,6 +155,23 @@
     $('#register').modal();
     @endif
     @endif
+
+    @if(Auth::check())
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        @if(Auth::user()->quyen == 0)
+        $('#16').click();
+        @endif
+    }
+    @else
+    function openForm() {
+        alert('Bạn cần đăng nhập để thực hiện chức năng này')
+    }
+    @endif
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+    }
 </script>
 
 {{-- thông báo đã mua --}}

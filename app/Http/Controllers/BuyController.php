@@ -19,6 +19,7 @@ use URL;
 use Session;
 use Redirect;
 use Input;
+use DB;
 
 /** All Paypal Details class **/
 use PayPal\Rest\ApiContext;
@@ -55,9 +56,17 @@ class BuyController extends Controller
                 $tongtien += ($gio->ctsanpham->Gia*(100-$gio->ctsanpham->KhuyenMai)/100) * $gio->SoLuong;
                 $soluong += $gio->SoLuong;
             }
+            if (Auth::check()){
+            $user = DB::select("select users.id, users.name, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.name, users.email");
+            view()->share('user',$user);
+            }
             view()->share('giohang',$giohang);
             view()->share('tongtien',$tongtien);
             view()->share('soluong',$soluong);
+
             return $next($request);
         });
 

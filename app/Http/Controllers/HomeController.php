@@ -26,6 +26,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use DB;
 
 class HomeController extends Controller
 {
@@ -48,6 +49,13 @@ class HomeController extends Controller
             foreach ($giohang as $gio){
                 $tongtien += ($gio->ctsanpham->Gia*(100-$gio->ctsanpham->KhuyenMai)/100) * $gio->SoLuong;
                 $soluong += $gio->SoLuong;
+            }
+            if (Auth::check()){
+                $user = DB::select("select users.id, users.name, users.email, count(is_read) as unread
+        from users LEFT  JOIN  messages ON users.id = messages.from and is_read = 0 and messages.to = " . Auth::id() . "
+        where users.id != " . Auth::id() . "
+        group by users.id, users.name, users.email");
+                view()->share('user',$user);
             }
             view()->share('giohang',$giohang);
             view()->share('tongtien',$tongtien);

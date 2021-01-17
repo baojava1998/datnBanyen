@@ -74,8 +74,8 @@
         <div class="col-lg-6 text-center">
             <div class="section-title">
                 <h2>Deal Of The Week</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                    consectetur adipisicing elit </p>
+                <p>Giá rẻ tuyệt vời, số lượng có hạng<br /> mua ngay
+                </p>
                 <div class="product-price">
                     $35.00
                     <span>/ Yến</span>
