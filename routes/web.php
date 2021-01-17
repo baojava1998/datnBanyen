@@ -141,5 +141,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 Route::get('/home', 'ChatController@index')->name('home');
 Route::get('/mess/{ourid}', 'ChatController@getMess');
 Route::post('/mess', 'ChatController@sendMess');
-Route::get('/logout', 'UserController@getDangXuatAdmin')->name('logout');
 //Route::get('/','Controller@index');
