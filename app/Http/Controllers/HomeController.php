@@ -295,4 +295,41 @@ class HomeController extends Controller
             'data'=>$output,
         ]);
     }
+    public function getNguoidung()
+    {
+        return view('pages.nguoidung');
+    }
+    public function postNguoidung(Request $request)
+    {
+        $this->validate($request,
+            [
+                'name'=>'required|min:3',
+            ],
+            [
+                'name.required'=>'Bạn chưa nhập tên người dùng',//required là có hay k
+                'name.min'=>'Tên người dùng phải có it nhất 3 ký tự',
+            ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+
+        if($request->changePassword == "on")  //nếu check là on
+        {
+            $this->validate($request,
+                [
+                    'password'=>'required|min:3|max:32',
+                    'passwordAgain'=>'required|same:password'
+                ],
+                [
+                    'password.required'=>'bạn chưa nhập password',
+                    'password.min'=>'Password phải có it nhất 3 ký tự',
+                    'password.max'=>'Password không được quá 32 ký tự',
+                    'passwordAgain.same'=>'Mật khẩu không khớp',
+                    'passwordAgain.required'=>'Bạn chưa nhập lại mật khẩu'
+                ]);
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        return redirect('nguoidung')->with('thongbao','Sửa thành công');
+    }
 }

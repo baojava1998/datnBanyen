@@ -24,6 +24,8 @@ Route::get('/update-card', 'HomeController@UpdateCard')->name('updateCard');
 Route::get('delete-card','HomeController@DeleteCard')->name('deleteCard');
 Route::get('/search-category', 'HomeController@searchProduct');
 Route::post('/rating', 'HomeController@rating')->name('rating');
+Route::get('nguoidung','HomeController@getNguoidung');
+Route::post('nguoidung','HomeController@postNguoidung');
 //login
 Route::get('/dangnhap', 'UserController@getDangnhap');
 Route::post('/dangnhap', 'UserController@postDangnhap')->name('login.page');

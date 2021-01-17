@@ -15,8 +15,11 @@
                 @if(Auth::check())
                 <a href="/logout" class="fa" style="float: right;margin-top: 3.5%;margin-left: 10px;"><i style="font-size:24px;
                 color: black"class="fa">&#xf08b;</i></a>
+                    <a href="/nguoidung" style="float: right;margin-top: 3.5%;margin-left: 10px;"><i style="font-size:24px;
+                color: black"class="fa fa-user"></i></a>
                 @endif
-                <a href="" class="login-panel" data-toggle="modal" data-target="{{Auth::check() ? '' : '#login'}}"><i class="fa fa-user"></i>
+                <a href="nguoidung" class="login-panel" data-toggle="modal" data-target="{{Auth::check() ? '' : '#login'}}">
+{{--                    <i class="fa fa-user"></i>--}}
                         {{Auth::check() ? Auth::user()->name : 'Đăng nhập'}}
                 </a>
                 <div class="lan-selector">
