@@ -119,10 +119,10 @@ li {
 }
 
 .active {
-    background: #eeeeee;
+    /*background: #eeeeee;*/
 }
 
-input[type=text] {
+.submit-messages {
     width: 100%;
     padding: 12px 20px;
     /*margin: 15px 0 0 0;*/
@@ -133,6 +133,12 @@ input[type=text] {
     border: 1px solid #cccccc;
 }
 
-input[type=text]:focus {
+.submit-messages:focus {
     border: 1px solid #aaaaaa;
+}
+.owl-stage-outer .active {
+    background: white !important;
+}
+.filter-control .active {
+    background: white !important;
 }

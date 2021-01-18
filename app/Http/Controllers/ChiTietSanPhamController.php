@@ -55,7 +55,7 @@ class ChiTietSanPhamController extends Controller
         $ctsanpham->Gia = $request->Gia;
         $ctsanpham->KhuyenMai = $request->KhuyenMai;
         $ctsanpham->save();
-        return redirect('admin/ctsanpham/them')->with('thongbao','Thêm tin tức thành công');
+        return redirect('admin/ctsanpham/them')->with('thongbao','Thêm chi tiết thành công');
     }
     public function getSua($id)
     {
