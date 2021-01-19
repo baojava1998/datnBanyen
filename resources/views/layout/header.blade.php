@@ -104,8 +104,8 @@
                     <li class="{{(Request::segment(1) == ''?'active': '')}}"><a href="./">Trang chủ</a></li>
                     <li class="{{(Request::segment(1) == 'shop'?'active': (isset($_GET['product'])?'active':(Request::segment(1) == 'shop-detail')?'active':''))}}"><a href="/shop">Sản phẩm</a></li>
                     <li class="{{isset($_GET['sale'])?'active':''}}"><a href="/TheLoai?sale=true">Giảm giá</a></li>
-                    <li><a href="./contact.html">Liên Hệ</a></li>
-                    <li><a href="#">Phản hồi</a></li>
+                    <li class="{{(Request::segment(1) == 'lienhe'?'active': '')}}"><a href="/lienhe">Liên Hệ</a></li>
+                    <li class="noready"><a href="javascript:">Phản hồi</a></li>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>

@@ -141,12 +141,15 @@ class HomeController extends Controller
         $output = '';
         $chitietsanpham = ChiTietSanPham::with('sanpham')->whereHas('sanpham', function($q) use ($request){
             $q->whereBetween('Gia', [$request->min, $request->max]);
-            if ($request->load == 1 || $request->load ==2){
+            if ($request->load =='sale'){
+            $q->where('KhuyenMai','!=',null);
+            }
+            else
+//                if ($request->load == 1 || $request->load ==2)
+            {
                 $q->where('idLoaiSanPham', $request->load);
             }
-            elseif ($request->load =='sale'){
-                $q->where('KhuyenMai','!=',null);
-            }
+
         })->take(6)->get();
         $loadmore = 'seach';
         if ($request->load == 1 || $request->load ==2){
@@ -331,5 +334,9 @@ class HomeController extends Controller
         }
         $user->save();
         return redirect('nguoidung')->with('thongbao','Sửa thành công');
+    }
+    public function getLienHe()
+    {
+        return view('pages.contact');
     }
 }

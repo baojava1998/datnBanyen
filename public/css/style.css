@@ -2074,6 +2074,26 @@ ol {
 
 .product-pic-zoom img {
 	min-width: 100%;
+    display: block;
+    max-width: 555px;
+    max-height: 462px;
+    object-fit: cover;
+}
+.thumbs-detail .owl-carousel .owl-item img {
+    display: block;
+    /*min-width: 178px;*/
+    max-height: 148px;
+    object-fit: cover;
+}
+@media (max-width:575px){
+    .thumbs-detail .owl-carousel .owl-item img {
+        max-width: 178px;
+    }
+}
+@media (min-width:576px){
+    .thumbs-detail .owl-carousel .owl-item img {
+        min-width: 178px;
+    }
 }
 
 .product-pic-zoom .zoom-icon {

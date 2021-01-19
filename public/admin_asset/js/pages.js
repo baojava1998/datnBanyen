@@ -144,4 +144,21 @@ $(document).ready(function() {
 
 
     });
+    let count = $('.product-details').find('input').val();
+    if (count==1){
+        $(this).find('.dec').attr('hidden',true);
+    }
+});
+
+$(document).on('click', '.noready', function(e){
+    alert('Chức năng hiện tại chưa sẵn sàng')
+    return false;
+});
+$(document).on('click', '.qty-detail', function(e){
+let count = $(this).find('input').val();
+    if (count >= 2){
+        $(this).find('.dec').removeAttr('hidden');
+    }else {
+        $(this).find('.dec').attr('hidden',true);
+    }
 });

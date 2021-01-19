@@ -58,7 +58,7 @@
                                 <i class="fa fa-search-plus"></i>
                             </div>
                         </div>
-                        <div class="product-thumbs">
+                        <div class="product-thumbs thumbs-detail">
                             <div class="product-thumbs-track ps-slider owl-carousel">
                                 @foreach($chitietsanpham->sanpham->hinh as $hinh)
                                 <div class=
@@ -93,7 +93,7 @@
                                 </h4>
                             </div>
                             <div class="quantity">
-                                <div class="pro-qty">
+                                <div class="pro-qty qty-detail">
                                     <span class="dec qtybtn">-</span>
                                     <input type="text" value="1">
 {{--                                    <input name="cart_update" type="text" value="1">--}}

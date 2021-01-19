@@ -11,9 +11,9 @@
                         <h6>Sản phẩm...</h6>
                     </div>
                 </td>
-                <td class="si-close">
-                    <i class="ti-close"></i>
-                </td>
+{{--                <td class="si-close">--}}
+{{--                    <i class="ti-close"></i>--}}
+{{--                </td>--}}
             </tr>
         @empty
             <p>Chưa có sản phẩm nào</p>

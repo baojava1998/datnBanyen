@@ -76,10 +76,10 @@
                 <h2>Deal Of The Week</h2>
                 <p>Giá rẻ tuyệt vời, số lượng có hạng<br /> mua ngay
                 </p>
-                <div class="product-price">
-                    $35.00
-                    <span>/ Yến</span>
-                </div>
+{{--                <div class="product-price">--}}
+{{--                    $35.00--}}
+{{--                    <span>/ Yến</span>--}}
+{{--                </div>--}}
             </div>
             <div class="countdown-timer" id="countdown">
                 <div class="cd-item">
