@@ -152,12 +152,13 @@ class HomeController extends Controller
 
         })->take(6)->get();
         $loadmore = 'seach';
-        if ($request->load == 1 || $request->load ==2){
-            $loadmore = 'seach-'.$request->load;
-        }
         if ($request->load == 'sale'){
             $loadmore = 'sale';
+        }else{
+//        if ($request->load == 1 || $request->load ==2){
+            $loadmore = 'seach-'.$request->load;
         }
+
         $output .= View::make('layout.component.content-product', ['sanpham' => $chitietsanpham, 'loadmore'=> $loadmore]);
         return response()->json([
             'error'=>false,

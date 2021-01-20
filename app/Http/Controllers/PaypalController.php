@@ -192,11 +192,11 @@ class PaypalController extends Controller
                 $item->delete();
             }
 
-            \Session::put('successCheckOut','Payment success');
-            return redirect()->route('home');
+//            \Session::put('successCheckOut','Payment success');
+            return redirect()->route('home')->with('successCheckOut','Payment success');
         }
-        \Session::put('errorpayment','Payment failed');
+//        \Session::put('errorpayment','Payment failed');
 
-        return redirect()->route('landingNews');
+        return redirect()->route('home')->with('falseCheckOut','Payment false');
     }
 }

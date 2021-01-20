@@ -241,4 +241,7 @@
     @if (session('successCheckOut'))
     alert('Đặt hàng thành công');
     @endif
+    @if (session('falseCheckOut'))
+    alert('Đặt hàng thất bại');
+    @endif
 </script>
